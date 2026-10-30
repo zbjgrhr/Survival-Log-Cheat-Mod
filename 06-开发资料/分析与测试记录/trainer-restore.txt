@@ -1,0 +1,1 @@
+show=False foreground=True

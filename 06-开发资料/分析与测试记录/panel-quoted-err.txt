@@ -1,0 +1,53 @@
+ËùÔÚÎ»ÖÃ C:\tool\steam\steamapps\common\Survival Log\SurvivalLogPanel.ps1:26 ×Ö·û: 14
++             'ä¿®æ”¹å™¨æœªè¿è¡Œ', 'OK', 'Warning'
++              ~
+·½·¨µ÷ÓÃÖÐÈ±ÉÙ¡°)¡±¡£
+ËùÔÚÎ»ÖÃ C:\tool\steam\steamapps\common\Survival Log\SurvivalLogPanel.ps1:26 ×Ö·û: 14
++             'ä¿®æ”¹å™¨æœªè¿è¡Œ', 'OK', 'Warning'
++              ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+±í´ïÊ½»òÓï¾äÖÐ°üº¬ÒâÍâµÄ±ê¼Ç¡°ä¿®æ”¹å™¨æœªè¿è¡Œ', 'OK', 'Warning'
+        ) | Out-Null
+        return
+    }
+    # è¯¥ä¿®æ”¹å™¨ä½¿ç”¨å…¨å±€å¿«æ·é”®ï¼›ä¸æŠ¢èµ°æ¸¸æˆç„¦ç‚¹ï¼ŒæŒ‰é”®ä¹Ÿèƒ½è¢«å®ƒæŽ¥æ”¶ã€?    foreach ($modifier in 
+$modifiers) { [TrainerKeys]::keybd_event($modifier, 0, 0, [UIntPtr]::Zero) }
+    [TrainerKeys]::keybd_event($key, 0, 0, [UIntPtr]::Zero)
+    Start-Sleep -Milliseconds 35
+    [TrainerKeys]::keybd_event($key, 0, [TrainerKeys]::KEYEVENTF_KEYUP, [UIntPtr]::Zero)
+    for ($index = $modifiers.Count - 1; $index -ge 0; $index--) {
+        [TrainerKeys]::keybd_event($modifiers[$index], 0, [TrainerKeys]::KEYEVENTF_KEYUP, [UIntPtr]::Zero)
+    }
+}
+function New-ActionButton([string]$text, [byte]$key, [byte[]]$modifiers = @()) {
+    $button = New-Object System.Windows.Forms.Button
+    $button.Text = $text
+    $button.Height = 44
+    $button.Width = 178
+    $button.Margin = New-Object System.Windows.Forms.Padding(5)
+    $button.FlatStyle = 'Flat'
+    $button.FlatAppearance.BorderColor = [System.Drawing.Color]::FromArgb(67, 87, 96)
+    $button.FlatAppearance.BorderSize = 1
+    $button.BackColor = [System.Drawing.Color]::FromArgb(30, 42, 48)
+    $button.ForeColor = [System.Drawing.Color]::FromArgb(232, 238, 231)
+    $button.Font = New-Object System.Drawing.Font('Microsoft¡±¡£
+ËùÔÚÎ»ÖÃ C:\tool\steam\steamapps\common\Survival Log\SurvivalLogPanel.ps1:147 ×Ö·û: 4
++ 1. ä»?Steam å¯åŠ¨æ¸¸æˆå¹¶åŠ è½½å­˜æ¡£ã€?2. å¯åŠ¨æ¸¸æˆç›®å½•å†…çš„â€œæœ«æ—¥ç”Ÿå­˜æ—¥å¿—ä½œå¼Šå™¨.exeâ€ã€?3. æ‰ ..
+.
++    ~~~~~~~
+±í´ïÊ½»òÓï¾äÖÐ°üº¬ÒâÍâµÄ±ê¼Ç¡°ä»?Steam¡±¡£
+ËùÔÚÎ»ÖÃ C:\tool\steam\steamapps\common\Survival Log\SurvivalLogPanel.ps1:153 ×Ö·û: 88
++ ... …æ ¼æ•°ã€?â€?â€œæ— é™å‘ç”µè¾“å‡ºâ€ä¸ç­‰äºŽå‘ç”µæœºç‡ƒæ–™ä¸æ¶ˆè€—ã€?â€?è§£é”å›¾é‰´ã€æˆå°±å‰å»ºè®®å…ˆå¤‡
+ä»½å­˜æ¡£ã€?'@
++                                                                        ~~
+×Ö·û´®È±ÉÙÖÕÖ¹·û: '¡£
+ËùÔÚÎ»ÖÃ C:\tool\steam\steamapps\common\Survival Log\SurvivalLogPanel.ps1:23 ×Ö·û: 29
++     if ($null -eq $trainer) {
++                             ~
+Óï¾ä¿é»òÀàÐÍ¶¨ÒåÖÐÈ±ÉÙÓÒ¡°}¡±¡£
+ËùÔÚÎ»ÖÃ C:\tool\steam\steamapps\common\Survival Log\SurvivalLogPanel.ps1:21 ×Ö·û: 64
++ function Send-TrainerKey([byte]$key, [byte[]]$modifiers = @()) {
++                                                                ~
+Óï¾ä¿é»òÀàÐÍ¶¨ÒåÖÐÈ±ÉÙÓÒ¡°}¡±¡£
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : MissingEndParenthesisInMethodCall
+ 

@@ -1,0 +1,166 @@
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
+
+$nativeSource = @'
+using System;
+using System.Runtime.InteropServices;
+public static class TrainerKeys {
+  [DllImport("user32.dll")] public static extern bool SetForegroundWindow(IntPtr hWnd);
+  [DllImport("user32.dll")] public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, UIntPtr dwExtraInfo);
+  public const uint KEYEVENTF_KEYUP = 0x0002;
+}
+'@
+Add-Type -TypeDefinition $nativeSource
+
+function Get-TrainerProcess {
+    Get-Process -ErrorAction SilentlyContinue | Where-Object {
+        $_.ProcessName -match '^(末日生存日志作弊器|Survival Log v1\.0 Plus 28 Trainer)$'
+    } | Select-Object -First 1
+}
+
+function Send-TrainerKey([byte]$key, [byte[]]$modifiers = @()) {
+    $trainer = Get-TrainerProcess
+    if ($null -eq $trainer) {
+        [System.Windows.Forms.MessageBox]::Show(
+            '未检测到修改器。请先启动“末日生存日志作弊器.exe”，再点击面板按钮。',
+            '修改器未运行', 'OK', 'Warning'
+        ) | Out-Null
+        return
+    }
+    # 该修改器使用全局快捷键；不抢走游戏焦点，按键也能被它接收。
+    foreach ($modifier in $modifiers) { [TrainerKeys]::keybd_event($modifier, 0, 0, [UIntPtr]::Zero) }
+    [TrainerKeys]::keybd_event($key, 0, 0, [UIntPtr]::Zero)
+    Start-Sleep -Milliseconds 35
+    [TrainerKeys]::keybd_event($key, 0, [TrainerKeys]::KEYEVENTF_KEYUP, [UIntPtr]::Zero)
+    for ($index = $modifiers.Count - 1; $index -ge 0; $index--) {
+        [TrainerKeys]::keybd_event($modifiers[$index], 0, [TrainerKeys]::KEYEVENTF_KEYUP, [UIntPtr]::Zero)
+    }
+}
+
+function New-ActionButton([string]$text, [byte]$key, [byte[]]$modifiers = @()) {
+    $button = New-Object System.Windows.Forms.Button
+    $button.Text = $text
+    $button.Height = 44
+    $button.Width = 178
+    $button.Margin = New-Object System.Windows.Forms.Padding(5)
+    $button.FlatStyle = 'Flat'
+    $button.FlatAppearance.BorderColor = [System.Drawing.Color]::FromArgb(67, 87, 96)
+    $button.FlatAppearance.BorderSize = 1
+    $button.BackColor = [System.Drawing.Color]::FromArgb(30, 42, 48)
+    $button.ForeColor = [System.Drawing.Color]::FromArgb(232, 238, 231)
+    $button.Font = New-Object System.Drawing.Font('Microsoft YaHei UI', 9, [System.Drawing.FontStyle]::Regular)
+    $button.Tag = [PSCustomObject]@{ Key = $key; Modifiers = [byte[]]$modifiers }
+    $button.Add_Click({
+        param($sender, $eventArgs)
+        $binding = $sender.Tag
+        Send-TrainerKey $binding.Key $binding.Modifiers
+    })
+    return $button
+}
+
+$form = New-Object System.Windows.Forms.Form
+$form.Text = '末日生存日志 · 控制面板'
+$form.ClientSize = New-Object System.Drawing.Size(826, 640)
+$form.MinimumSize = New-Object System.Drawing.Size(842, 679)
+$form.StartPosition = 'CenterScreen'
+$form.BackColor = [System.Drawing.Color]::FromArgb(15, 22, 25)
+$form.ForeColor = [System.Drawing.Color]::FromArgb(232, 238, 231)
+$form.Font = New-Object System.Drawing.Font('Microsoft YaHei UI', 9)
+$form.FormBorderStyle = 'FixedSingle'
+$form.MaximizeBox = $false
+
+$header = New-Object System.Windows.Forms.Panel
+$header.Dock = 'Top'; $header.Height = 94
+$header.BackColor = [System.Drawing.Color]::FromArgb(20, 32, 36)
+$title = New-Object System.Windows.Forms.Label
+$title.Text = 'SURVIVAL  //  FIELD CONSOLE'
+$title.Location = New-Object System.Drawing.Point(26, 17); $title.AutoSize = $true
+$title.Font = New-Object System.Drawing.Font('Bahnschrift SemiBold', 19, [System.Drawing.FontStyle]::Bold)
+$title.ForeColor = [System.Drawing.Color]::FromArgb(202, 225, 198)
+$subTitle = New-Object System.Windows.Forms.Label
+$subTitle.Text = '末日生存日志 · 本地控制面板  |  点击按钮即可向已启动的修改器发送快捷键'
+$subTitle.Location = New-Object System.Drawing.Point(28, 56); $subTitle.AutoSize = $true
+$subTitle.ForeColor = [System.Drawing.Color]::FromArgb(143, 166, 158)
+$header.Controls.AddRange(@($title, $subTitle)); $form.Controls.Add($header)
+
+$tabs = New-Object System.Windows.Forms.TabControl
+$tabs.Dock = 'Fill'; $tabs.Padding = New-Object System.Drawing.Point(18, 8)
+$tabs.Appearance = 'FlatButtons'; $tabs.BackColor = $form.BackColor
+
+function New-Tab([string]$name) {
+    $tab = New-Object System.Windows.Forms.TabPage
+    $tab.Text = $name; $tab.BackColor = [System.Drawing.Color]::FromArgb(15, 22, 25)
+    $flow = New-Object System.Windows.Forms.FlowLayoutPanel
+    $flow.Dock = 'Fill'; $flow.Padding = New-Object System.Windows.Forms.Padding(17, 18, 17, 5)
+    $flow.AutoScroll = $true; $flow.BackColor = $tab.BackColor
+    $tab.Controls.Add($flow); $tabs.TabPages.Add($tab); return $flow
+}
+
+$survival = New-Tab '生存状态'
+$survival.Controls.AddRange(@(
+    (New-ActionButton '无限饱腹  [小键盘 1]' 0x61),
+    (New-ActionButton '无限心态  [小键盘 2]' 0x62),
+    (New-ActionButton '无限精力  [小键盘 3]' 0x63),
+    (New-ActionButton '无限生命  [小键盘 4]' 0x64),
+    (New-ActionButton '无限物品使用  [小键盘 5]' 0x65),
+    (New-ActionButton '无限物品保质期  [小键盘 6]' 0x66),
+    (New-ActionButton '建筑家具耐久  [小键盘 7]' 0x67),
+    (New-ActionButton '无限发电输出  [小键盘 8]' 0x68),
+    (New-ActionButton '无限电池电量  [小键盘 9]' 0x69),
+    (New-ActionButton '最大负重  [小键盘 0]' 0x60)
+))
+
+$progress = New-Tab '资源与成长'
+$ctrl = [byte[]](0x11)
+$progress.Controls.AddRange(@(
+    (New-ActionButton '增加金币  [Ctrl + 小键盘 1]' 0x61 $ctrl),
+    (New-ActionButton '编辑生存点  [Ctrl + 小键盘 2]' 0x62 $ctrl),
+    (New-ActionButton '编辑信念/规划点  [Ctrl + 小键盘 3]' 0x63 $ctrl),
+    (New-ActionButton '满技能熟练度  [Ctrl + 小键盘 5]' 0x65 $ctrl),
+    (New-ActionButton '技能熟练度倍率  [Ctrl + 小键盘 6]' 0x66 $ctrl),
+    (New-ActionButton '解锁全部图鉴  [Alt + 小键盘 6]' 0x66 ([byte[]](0x12))),
+    (New-ActionButton '解锁全部成就  [Alt + 小键盘 7]' 0x67 ([byte[]](0x12))),
+    (New-ActionButton '免费制作  [Alt + 小键盘 4]' 0x64 ([byte[]](0x12))),
+    (New-ActionButton '免费刷新规划  [Ctrl + 小键盘 4]' 0x64 $ctrl)
+))
+
+$world = New-Tab '世界与速度'
+$world.Controls.AddRange(@(
+    (New-ActionButton '冻结昼夜  [Ctrl + 小键盘 7]' 0x67 $ctrl),
+    (New-ActionButton '时间流逝速度  [Ctrl + 小键盘 8]' 0x68 $ctrl),
+    (New-ActionButton '植物瞬间成熟  [Alt + 小键盘 1]' 0x61 ([byte[]](0x12))),
+    (New-ActionButton '烹饪瞬间完成  [Alt + 小键盘 2]' 0x62 ([byte[]](0x12))),
+    (New-ActionButton '烹饪无限燃料  [Alt + 小键盘 3]' 0x63 ([byte[]](0x12))),
+    (New-ActionButton '地图移动时间为零  [Alt + 小键盘 8]' 0x68 ([byte[]](0x12))),
+    (New-ActionButton '设置移动速度  [Alt + 小键盘 9]' 0x69 ([byte[]](0x12))),
+    (New-ActionButton '设置游戏速度  [Alt + 小键盘 0]' 0x60 ([byte[]](0x12)))
+))
+
+$help = New-Object System.Windows.Forms.TabPage
+$help.Text = '使用说明'; $help.BackColor = [System.Drawing.Color]::FromArgb(15, 22, 25)
+$info = New-Object System.Windows.Forms.Label
+$info.Dock = 'Fill'; $info.Padding = New-Object System.Windows.Forms.Padding(28, 25, 28, 25)
+$info.Font = New-Object System.Drawing.Font('Microsoft YaHei UI', 10)
+$info.ForeColor = [System.Drawing.Color]::FromArgb(203, 215, 207)
+$info.Text = @'
+使用顺序
+
+1. 从 Steam 启动游戏并加载存档。
+2. 启动游戏目录内的“末日生存日志作弊器.exe”。
+3. 打开本面板，点击任意项目开关。再次点击相同项目即可关闭。
+
+数值型项目
+
+“移动速度 / 游戏速度 / 时间速度 / 技能倍率”等数值由原修改器窗口保存。本面板会激活对应功能；请在原修改器中设置具体数值（移动速度可设为 1–20）。
+
+提示
+
+• “最大负重”不是任意背包格数。
+• “无限发电输出”不等于发电机燃料不消耗。
+• 解锁图鉴、成就前建议先备份存档。
+'@
+$help.Controls.Add($info); $tabs.TabPages.Add($help)
+$form.Controls.Add($tabs)
+
+$form.Add_Shown({ $form.Activate() })
+[void]$form.ShowDialog()

@@ -1,0 +1,669 @@
+
+METHOD GameCore.HotUpdate.WebGm::set_LockExploreExposure
+0x1829443f0 push rbx 
+0x1829443f2 sub rsp, 0x20 
+0x1829443f6 cmp byte ptr [rip + 0x36057c9], 0 
+0x1829443fd movzx ebx, cl 
+0x182944400 jne 0x182944415 
+0x182944402 lea rcx, [rip + 0x32ddc3f] 
+0x182944409 call 0x18050a950 
+0x18294440e mov byte ptr [rip + 0x36057b1], 1 
+0x182944415 mov rax, qword ptr [rip + 0x32ddc2c] 
+0x18294441c cmp dword ptr [rax + 0xe4], 0 
+0x182944423 jne 0x182944434 
+0x182944425 mov rcx, rax 
+0x182944428 call 0x18050ac30 
+0x18294442d mov rax, qword ptr [rip + 0x32ddc14] 
+0x182944434 mov rcx, qword ptr [rax + 0xb8] 
+0x18294443b mov byte ptr [rcx + 5], bl 
+0x18294443e add rsp, 0x20 
+0x182944442 pop rbx 
+0x182944443 ret  
+0x182944444 int3  
+0x182944445 int3  
+0x182944446 int3  
+0x182944447 int3  
+0x182944448 int3  
+0x182944449 int3  
+0x18294444a int3  
+0x18294444b int3  
+0x18294444c int3  
+0x18294444d int3  
+0x18294444e int3  
+0x18294444f int3  
+
+METHOD GameCore.HotUpdate.Battle.Logic.EndlessManager::FallMapPoint
+0x182681f00 mov dword ptr [rsp + 0x20], r9d 
+0x182681f05 push rbp 
+0x182681f06 push rdi 
+0x182681f07 push r13 
+0x182681f09 push r14 
+0x182681f0b push r15 
+0x182681f0d mov rbp, rsp 
+0x182681f10 sub rsp, 0x50 
+0x182681f14 cmp byte ptr [rip + 0x38c6c21], 0 
+0x182681f1b mov r10d, r9d 
+0x182681f1e mov r14, r8 
+0x182681f21 mov r13, rdx 
+0x182681f24 mov r15, rcx 
+0x182681f27 jne 0x182681fe0 
+0x182681f2d lea rcx, [rip + 0x351d6b4] 
+0x182681f34 call 0x18050a950 
+0x182681f39 lea rcx, [rip + 0x351c4a0] 
+0x182681f40 call 0x18050a950 
+0x182681f45 lea rcx, [rip + 0x35abf3c] 
+0x182681f4c call 0x18050a950 
+0x182681f51 lea rcx, [rip + 0x35a4e58] 
+0x182681f58 call 0x18050a950 
+0x182681f5d lea rcx, [rip + 0x351074c] 
+0x182681f64 call 0x18050a950 
+0x182681f69 lea rcx, [rip + 0x352ea00] 
+0x182681f70 call 0x18050a950 
+0x182681f75 lea rcx, [rip + 0x359da1c] 
+0x182681f7c call 0x18050a950 
+0x182681f81 lea rcx, [rip + 0x355c778] 
+0x182681f88 call 0x18050a950 
+0x182681f8d lea rcx, [rip + 0x355c62c] 
+0x182681f94 call 0x18050a950 
+0x182681f99 lea rcx, [rip + 0x3590bb8] 
+0x182681fa0 call 0x18050a950 
+0x182681fa5 lea rcx, [rip + 0x35b3dcc] 
+0x182681fac call 0x18050a950 
+0x182681fb1 lea rcx, [rip + 0x359b2a8] 
+0x182681fb8 call 0x18050a950 
+0x182681fbd lea rcx, [rip + 0x35b3ef4] 
+0x182681fc4 call 0x18050a950 
+0x182681fc9 lea rcx, [rip + 0x35b1d28] 
+0x182681fd0 call 0x18050a950 
+0x182681fd5 mov r10d, dword ptr [rbp + 0x48] 
+0x182681fd9 mov byte ptr [rip + 0x38c6b5c], 1 
+0x182681fe0 xor edi, edi 
+0x182681fe2 mov qword ptr [rsp + 0x80], rbx 
+0x182681fea mov qword ptr [rsp + 0x48], rsi 
+0x182681fef mov qword ptr [rsp + 0x40], r12 
+0x182681ff4 mov dword ptr [rbp - 0x20], edi 
+0x182681ff7 test r13, r13 
+0x182681ffa je 0x182682608 
+0x182682000 mov rcx, qword ptr [r13 + 0xe0] 
+0x182682007 test rcx, rcx 
+0x18268200a je 0x182682608 
+0x182682010 mov rdx, qword ptr [rip + 0x359d981] 
+0x182682017 inc dword ptr [rcx + 0x1c] 
+0x18268201a mov r9, qword ptr [rcx + 0x10] 
+0x18268201e test r9, r9 
+0x182682021 je 0x182682608 
+0x182682027 movsxd r8, dword ptr [rcx + 0x18] 
+0x18268202b cmp r8d, dword ptr [r9 + 0x18] 
+0x18268202f jb 0x18268204a 
+0x182682031 mov rax, qword ptr [rdx + 0x20] 
+0x182682035 mov edx, r10d 
+0x182682038 mov r8, qword ptr [rax + 0xc0] 
+0x18268203f mov r8, qword ptr [r8 + 0x70] 
+0x182682043 call 0x1812e50a0 
+0x182682048 jmp 0x182682060 
+0x18268204a lea eax, [r8 + 1] 
+0x18268204e mov dword ptr [rcx + 0x18], eax 
+0x182682051 cmp r8d, dword ptr [r9 + 0x18] 
+0x182682055 jae 0x18268260e 
+0x18268205b mov dword ptr [r9 + r8*4 + 0x20], r10d 
+0x182682060 xor edx, edx 
+0x182682062 lea rcx, [rbp + 0x48] 
+0x182682066 call 0x183427f90 System.Int32::ToString
+0x18268206b mov rcx, qword ptr [rip + 0x359b1ee] 
+0x182682072 xor r8d, r8d 
+0x182682075 mov rdx, rax 
+0x182682078 call 0x1832658a0 System.String::Concat
+0x18268207d mov r12d, dword ptr [rbp + 0x50] 
+0x182682081 xor r8d, r8d 
+0x182682084 mov edx, r12d 
+0x182682087 mov rcx, rax 
+0x18268208a call 0x1831c0d90 GameCore.HotUpdate.Battle.Logic.GameCounter::SetCounter
+0x18268208f cmp byte ptr [rbp + 0x60], dil 
+0x182682093 je 0x1826820da 
+0x182682095 mov rcx, qword ptr [rip + 0x351c344] 
+0x18268209c call 0x182045330 GameCore.HotUpdate.BaseSingleton`1::get_Instance
+0x1826820a1 test rax, rax 
+0x1826820a4 je 0x1826820af 
+0x1826820a6 mov rbx, qword ptr [rax + 0x178] 
+0x1826820ad jmp 0x1826820b2 
+0x1826820af mov rbx, rdi 
+0x1826820b2 mov rcx, qword ptr [rip + 0x35105f7] 
+0x1826820b9 mov esi, dword ptr [rbp + 0x48] 
+0x1826820bc cmp dword ptr [rcx + 0xe4], edi 
+0x1826820c2 jne 0x1826820c9 
+0x1826820c4 call 0x18050ac30 
+0x1826820c9 xor r9d, r9d 
+0x1826820cc mov r8d, esi 
+0x1826820cf mov rdx, r14 
+0x1826820d2 mov rcx, rbx 
+0x1826820d5 call 0x18267fc50 GameCore.HotUpdate.Battle.Logic.EndlessManager::CancelAidRequestsOfFallenPoint
+0x1826820da mov rcx, qword ptr [rip + 0x351d507] 
+0x1826820e1 call 0x182045330 GameCore.HotUpdate.BaseSingleton`1::get_Instance
+0x1826820e6 test rax, rax 
+0x1826820e9 je 0x182682608 
+0x1826820ef mov edx, dword ptr [rbp + 0x48] 
+0x1826820f2 xor r8d, r8d 
+0x1826820f5 mov rcx, rax 
+0x1826820f8 call 0x182f70820 GameCore.HotUpdate.ConfigManager::Get_Config_MapPoint
+0x1826820fd mov rbx, rax 
+0x182682100 test rax, rax 
+0x182682103 je 0x182682115 
+0x182682105 mov rcx, qword ptr [rax + 0x18] 
+0x182682109 xor edx, edx 
+0x18268210b call 0x182971ab0 GameCore.HotUpdate.ConstantTextTools::GetLocalText
+0x182682110 mov r14, rax 
+0x182682113 jmp 0x182682126 
+0x182682115 mov rax, qword ptr [rip + 0x38db7e4] 
+0x18268211c mov rcx, qword ptr [rax + 0xb8] 
+0x182682123 mov r14, qword ptr [rcx] 
+0x182682126 mov rcx, qword ptr [rip + 0x3510583] 
+0x18268212d mov esi, dword ptr [rbp + 0x48] 
+0x182682130 cmp dword ptr [rcx + 0xe4], edi 
+0x182682136 jne 0x18268213d 
+0x182682138 call 0x18050ac30 
+0x18268213d xor edx, edx 
+0x18268213f mov ecx, esi 
+0x182682141 call 0x182689570 GameCore.HotUpdate.Battle.Logic.EndlessManager::IsCampMapPoint
+0x182682146 test al, al 
+0x182682148 je 0x18268215b 
+0x18268214a mov edx, dword ptr [rbp + 0x48] 
+0x18268214d xor r9d, r9d 
+0x182682150 mov r8d, r12d 
+0x182682153 mov rcx, r15 
+0x182682156 call 0x1826917b0 GameCore.HotUpdate.Battle.Logic.EndlessManager::RecordCampSavedDays
+0x18268215b mov rcx, qword ptr [rip + 0x351054e] 
+0x182682162 mov esi, dword ptr [rbp + 0x48] 
+0x182682165 cmp dword ptr [rcx + 0xe4], edi 
+0x18268216b jne 0x182682172 
+0x18268216d call 0x18050ac30 
+0x182682172 xor edx, edx 
+0x182682174 mov ecx, esi 
+0x182682176 call 0x1826893f0 GameCore.HotUpdate.Battle.Logic.EndlessManager::IsCampEvacuating
+0x18268217b test al, al 
+0x18268217d jne 0x1826825c9 
+0x182682183 mov rcx, qword ptr [rip + 0x3510526] 
+0x18268218a cmp dword ptr [rcx + 0xe4], edi 
+0x182682190 jne 0x182682197 
+0x182682192 call 0x18050ac30 
+0x182682197 cmp byte ptr [rip + 0x38c699f], dil 
+0x18268219e jne 0x1826821b3 
+0x1826821a0 lea rcx, [rip + 0x351c239] 
+0x1826821a7 call 0x18050a950 
+0x1826821ac mov byte ptr [rip + 0x38c698a], 1 
+0x1826821b3 test rbx, rbx 
+0x1826821b6 je 0x1826822d4 
+0x1826821bc cmp dword ptr [rbx + 0x28], 3 
+0x1826821c0 jne 0x182682222 
+0x1826821c2 cmp byte ptr [rbx + 0x34], dil 
+0x1826821c6 jne 0x182682222 
+0x1826821c8 mov rcx, qword ptr [rip + 0x351c211] 
+0x1826821cf call 0x182045330 GameCore.HotUpdate.BaseSingleton`1::get_Instance
+0x1826821d4 test rax, rax 
+0x1826821d7 je 0x1826822d4 
+0x1826821dd mov rsi, qword ptr [rax + 0x180] 
+0x1826821e4 test rsi, rsi 
+0x1826821e7 je 0x1826822d4 
+0x1826821ed mov rcx, qword ptr [rbx + 0x98] 
+0x1826821f4 xor edx, edx 
+0x1826821f6 call 0x183269f60 System.String::IsNullOrEmpty
+0x1826821fb test al, al 
+0x1826821fd jne 0x1826822d4 
+0x182682203 mov rdx, qword ptr [rbx + 0x98] 
+0x18268220a xor r8d, r8d 
+0x18268220d mov rcx, rsi 
+0x182682210 call 0x182836b80 GameCore.HotUpdate.Battle.Logic.TagManager::HasTag
+0x182682215 movzx esi, al 
+0x182682218 test al, al 
+0x18268221a je 0x1826822d7 
+0x182682220 jmp 0x182682225 
+0x182682222 mov sil, 1 
+0x182682225 xor edx, edx 
+0x182682227 mov rcx, r14 
+0x18268222a call 0x183269f60 System.String::IsNullOrEmpty
+0x18268222f test al, al 
+0x182682231 jne 0x18268233a 
+0x182682237 mov rbx, qword ptr [rbp + 0x58] 
+0x18268223b xor edx, edx 
+0x18268223d mov rcx, qword ptr [rbx] 
+0x182682240 call 0x183269f60 System.String::IsNullOrEmpty
+0x182682245 test al, al 
+0x182682247 je 0x18268224e 
+0x182682249 mov rax, r14 
+0x18268224c jmp 0x18268227d 
+0x18268224e mov rcx, qword ptr [rip + 0x352e71b] 
+0x182682255 mov r15, qword ptr [rbx] 
+0x182682258 cmp dword ptr [rcx + 0xe4], edi 
+0x18268225e jne 0x182682265 
+0x182682260 call 0x18050ac30 
+0x182682265 xor ecx, ecx 
+0x182682267 call 0x1826440e0 GameCore.HotUpdate.GameKey::get_ListSeparator
+0x18268226c xor r9d, r9d 
+0x18268226f mov r8, r14 
+0x182682272 mov rdx, rax 
+0x182682275 mov rcx, r15 
+0x182682278 call 0x1832655b0 System.String::Concat
+0x18268227d mov rdx, rax 
+0x182682280 mov qword ptr [rbx], rax 
+0x182682283 mov rcx, rbx 
+0x182682286 call 0x180509c80 
+0x18268228b mov eax, dword ptr [rbp + 0x48] 
+0x18268228e lea rdx, [rbp + 0x38] 
+0x182682292 mov rcx, qword ptr [rip + 0x38db61f] 
+0x182682299 mov dword ptr [rbp + 0x38], eax 
+0x18268229c call 0x180509c60 
+0x1826822a1 mov rcx, qword ptr [rip + 0x38db610] 
+0x1826822a8 lea rdx, [rbp - 0x1c] 
+0x1826822ac mov rbx, rax 
+0x1826822af mov dword ptr [rbp - 0x1c], r12d 
+0x1826822b3 call 0x180509c60 
+0x1826822b8 mov rcx, qword ptr [rip + 0x35b1a39] 
+0x1826822bf mov r9, rax 
+0x1826822c2 mov r8, rbx 
+0x1826822c5 mov qword ptr [rsp + 0x20], rdi 
+0x1826822ca mov rdx, r14 
+0x1826822cd call 0x1832687e0 System.String::Format
+0x1826822d2 jmp 0x182682319 
+0x1826822d4 xor sil, sil 
+0x1826822d7 mov eax, dword ptr [rbp + 0x48] 
+0x1826822da lea rdx, [rbp + 0x38] 
+0x1826822de mov rcx, qword ptr [rip + 0x38db5d3] 
+0x1826822e5 mov dword ptr [rbp + 0x38], eax 
+0x1826822e8 call 0x180509c60 
+0x1826822ed mov rcx, qword ptr [rip + 0x38db5c4] 
+0x1826822f4 lea rdx, [rbp - 0x1c] 
+0x1826822f8 mov rbx, rax 
+0x1826822fb mov dword ptr [rbp - 0x1c], r12d 
+0x1826822ff call 0x180509c60 
+0x182682304 mov rcx, qword ptr [rip + 0x35b3bad] 
+0x18268230b xor r9d, r9d 
+0x18268230e mov r8, rax 
+0x182682311 mov rdx, rbx 
+0x182682314 call 0x183268bd0 System.String::Format
+0x182682319 mov rcx, qword ptr [rip + 0x35abb68] 
+0x182682320 mov rbx, rax 
+0x182682323 cmp dword ptr [rcx + 0xe4], edi 
+0x182682329 jne 0x182682330 
+0x18268232b call 0x18050ac30 
+0x182682330 xor edx, edx 
+0x182682332 mov rcx, rbx 
+0x182682335 call 0x184169520 UnityEngine.Debug::Log
+0x18268233a test byte ptr [rbp + 0x68], sil 
+0x18268233e je 0x1826825e7 
+0x182682344 mov rax, qword ptr [rip + 0x3510365] 
+0x18268234b cmp dword ptr [rax + 0xe4], edi 
+0x182682351 jne 0x182682362 
+0x182682353 mov rcx, rax 
+0x182682356 call 0x18050ac30 
+0x18268235b mov rax, qword ptr [rip + 0x351034e] 
+0x182682362 mov rax, qword ptr [rax + 0xb8] 
+0x182682369 cmp byte ptr [rax + 8], dil 
+0x18268236d je 0x1826825e7 
+0x182682373 cmp byte ptr [r13 + 0xd9], dil 
+0x18268237a je 0x1826825e7 
+0x182682380 mov rcx, qword ptr [rip + 0x352e5e9] 
+0x182682387 cmp dword ptr [rcx + 0xe4], edi 
+0x18268238d jne 0x182682394 
+0x18268238f call 0x18050ac30 
+0x182682394 xor ecx, ecx 
+0x182682396 call 0x1826436d0 GameCore.HotUpdate.GameKey::get_IsEndlessDroneTradeActive
+0x18268239b test al, al 
+0x18268239d je 0x1826825e7 
+0x1826823a3 mov rax, qword ptr [rip + 0x3510306] 
+0x1826823aa cmp dword ptr [rax + 0xe4], edi 
+0x1826823b0 jne 0x1826823c1 
+0x1826823b2 mov rcx, rax 
+0x1826823b5 call 0x18050ac30 
+0x1826823ba mov rax, qword ptr [rip + 0x35102ef] 
+0x1826823c1 mov rax, qword ptr [rax + 0xb8] 
+0x1826823c8 mov rcx, qword ptr [rax + 0x10] 
+0x1826823cc test rcx, rcx 
+0x1826823cf je 0x182682608 
+0x1826823d5 mov r9, qword ptr [rip + 0x35a49d4] 
+0x1826823dc lea r8, [rbp - 0x20] 
+0x1826823e0 mov edx, dword ptr [rbp + 0x48] 
+0x1826823e3 call 0x18229da20 
+0x1826823e8 test al, al 
+0x1826823ea je 0x1826825e7 
+0x1826823f0 mov rcx, qword ptr [rip + 0x351bfe9] 
+0x1826823f7 call 0x182045330 GameCore.HotUpdate.BaseSingleton`1::get_Instance
+0x1826823fc test rax, rax 
+0x1826823ff je 0x182682436 
+0x182682401 mov rcx, qword ptr [rax + 0x178] 
+0x182682408 test rcx, rcx 
+0x18268240b je 0x182682436 
+0x18268240d mov edx, dword ptr [rbp - 0x20] 
+0x182682410 xor r9d, r9d 
+0x182682413 xor r8d, r8d 
+0x182682416 call 0x182678100 GameCore.HotUpdate.Battle.Logic.DynamicEventManager::TryForceTriggerEvent
+0x18268241b mov r8, qword ptr [rip + 0x355c19e] 
+0x182682422 lea rcx, [rbp + 0x38] 
+0x182682426 movzx edx, al 
+0x182682429 mov word ptr [rbp + 0x38], di 
+0x18268242d call 0x18150bf50 System.Data.SqlTypes.SqlByte::.ctor
+0x182682432 movzx edi, word ptr [rbp + 0x38] 
+0x182682436 mov rcx, qword ptr [rip + 0x359071b] 
+0x18268243d mov edx, 4 
+0x182682442 shr di, 8 
+0x182682446 call 0x180509d00 
+0x18268244b mov ecx, dword ptr [rbp + 0x48] 
+0x18268244e lea rdx, [rbp - 0x1c] 
+0x182682452 mov dword ptr [rbp - 0x1c], ecx 
+0x182682455 mov rbx, rax 
+0x182682458 mov rcx, qword ptr [rip + 0x38db459] 
+0x18268245f call 0x180509c60 
+0x182682464 mov rsi, rax 
+0x182682467 test rbx, rbx 
+0x18268246a je 0x18268265a 
+0x182682470 test rax, rax 
+0x182682473 je 0x18268248d 
+0x182682475 mov rdx, qword ptr [rbx] 
+0x182682478 mov rcx, rax 
+0x18268247b mov rdx, qword ptr [rdx + 0x40] 
+0x18268247f call 0x180509ca0 
+0x182682484 test rax, rax 
+0x182682487 je 0x182682614 
+0x18268248d cmp dword ptr [rbx + 0x18], 0 
+0x182682491 jbe 0x182682654 
+0x182682497 lea rcx, [rbx + 0x20] 
+0x18268249b mov qword ptr [rbx + 0x20], rsi 
+0x18268249f mov rdx, rsi 
+0x1826824a2 call 0x180509c80 
+0x1826824a7 mov eax, dword ptr [rbp - 0x20] 
+0x1826824aa lea rdx, [rbp - 0x18] 
+0x1826824ae mov rcx, qword ptr [rip + 0x38db403] 
+0x1826824b5 mov dword ptr [rbp - 0x18], eax 
+0x1826824b8 call 0x180509c60 
+0x1826824bd mov rsi, rax 
+0x1826824c0 test rax, rax 
+0x1826824c3 je 0x1826824dd 
+0x1826824c5 mov rdx, qword ptr [rbx] 
+0x1826824c8 mov rcx, rax 
+0x1826824cb mov rdx, qword ptr [rdx + 0x40] 
+0x1826824cf call 0x180509ca0 
+0x1826824d4 test rax, rax 
+0x1826824d7 je 0x182682624 
+0x1826824dd cmp dword ptr [rbx + 0x18], 1 
+0x1826824e1 jbe 0x182682654 
+0x1826824e7 lea rcx, [rbx + 0x28] 
+0x1826824eb mov qword ptr [rbx + 0x28], rsi 
+0x1826824ef mov rdx, rsi 
+0x1826824f2 call 0x180509c80 
+0x1826824f7 mov rcx, qword ptr [rip + 0x38db3ba] 
+0x1826824fe lea rdx, [rbp - 0x14] 
+0x182682502 mov dword ptr [rbp - 0x14], r12d 
+0x182682506 call 0x180509c60 
+0x18268250b mov rsi, rax 
+0x18268250e test rax, rax 
+0x182682511 je 0x18268252b 
+0x182682513 mov rdx, qword ptr [rbx] 
+0x182682516 mov rcx, rax 
+0x182682519 mov rdx, qword ptr [rdx + 0x40] 
+0x18268251d call 0x180509ca0 
+0x182682522 test rax, rax 
+0x182682525 je 0x182682634 
+0x18268252b cmp dword ptr [rbx + 0x18], 2 
+0x18268252f jbe 0x182682654 
+0x182682535 lea rcx, [rbx + 0x30] 
+0x182682539 mov qword ptr [rbx + 0x30], rsi 
+0x18268253d mov rdx, rsi 
+0x182682540 call 0x180509c80 
+0x182682545 mov rcx, qword ptr [rip + 0x38db34c] 
+0x18268254c lea rdx, [rbp + 0x38] 
+0x182682550 mov byte ptr [rbp + 0x38], dil 
+0x182682554 call 0x180509c60 
+0x182682559 mov rdi, rax 
+0x18268255c test rax, rax 
+0x18268255f je 0x182682579 
+0x182682561 mov rdx, qword ptr [rbx] 
+0x182682564 mov rcx, rax 
+0x182682567 mov rdx, qword ptr [rdx + 0x40] 
+0x18268256b call 0x180509ca0 
+0x182682570 test rax, rax 
+0x182682573 je 0x182682644 
+0x182682579 cmp dword ptr [rbx + 0x18], 3 
+0x18268257d jbe 0x182682654 
+0x182682583 lea rcx, [rbx + 0x38] 
+0x182682587 mov qword ptr [rbx + 0x38], rdi 
+0x18268258b mov rdx, rdi 
+0x18268258e call 0x180509c80 
+0x182682593 mov rcx, qword ptr [rip + 0x35b37de] 
+0x18268259a xor r8d, r8d 
+0x18268259d mov rdx, rbx 
+0x1826825a0 call 0x183268640 System.String::Format
+0x1826825a5 mov rcx, qword ptr [rip + 0x35ab8dc] 
+0x1826825ac mov rbx, rax 
+0x1826825af cmp dword ptr [rcx + 0xe4], 0 
+0x1826825b6 jne 0x1826825bd 
+0x1826825b8 call 0x18050ac30 
+0x1826825bd xor edx, edx 
+0x1826825bf mov rcx, rbx 
+0x1826825c2 call 0x184169520 UnityEngine.Debug::Log
+0x1826825c7 jmp 0x1826825e7 
+0x1826825c9 movzx eax, byte ptr [rbp + 0x68] 
+0x1826825cd mov r9d, r12d 
+0x1826825d0 mov edx, dword ptr [rbp + 0x48] 
+0x1826825d3 mov r8, r14 
+0x1826825d6 mov qword ptr [rsp + 0x28], rdi 
+0x1826825db mov rcx, r15 
+0x1826825de mov byte ptr [rsp + 0x20], al 
+0x1826825e2 call 0x18268c380 GameCore.HotUpdate.Battle.Logic.EndlessManager::OnCampEvacuated
+0x1826825e7 mov r12, qword ptr [rsp + 0x40] 
+0x1826825ec mov al, 1 
+0x1826825ee mov rsi, qword ptr [rsp + 0x48] 
+0x1826825f3 mov rbx, qword ptr [rsp + 0x80] 
+0x1826825fb add rsp, 0x50 
+0x1826825ff pop r15 
+0x182682601 pop r14 
+0x182682603 pop r13 
+0x182682605 pop rdi 
+0x182682606 pop rbp 
+0x182682607 ret  
+0x182682608 call 0x18050aba0 
+0x18268260d int3  
+0x18268260e call 0x18050ab90 
+0x182682613 int3  
+0x182682614 call 0x18050a570 
+0x182682619 mov rcx, rax 
+0x18268261c xor edx, edx 
+0x18268261e call 0x18050ab60 
+0x182682623 int3  
+0x182682624 call 0x18050a570 
+0x182682629 mov rcx, rax 
+0x18268262c xor edx, edx 
+0x18268262e call 0x18050ab60 
+0x182682633 int3  
+0x182682634 call 0x18050a570 
+0x182682639 mov rcx, rax 
+0x18268263c xor edx, edx 
+0x18268263e call 0x18050ab60 
+0x182682643 int3  
+0x182682644 call 0x18050a570 
+0x182682649 mov rcx, rax 
+0x18268264c xor edx, edx 
+0x18268264e call 0x18050ab60 
+0x182682653 int3  
+0x182682654 call 0x18050ab90 
+0x182682659 int3  
+0x18268265a call 0x18050aba0 
+0x18268265f int3  
+
+METHOD GameCore.HotUpdate.Battle.Logic.EndlessManager::TrySealTradeAccess
+0x18269b3d0 mov qword ptr [rsp + 8], rbx 
+0x18269b3d5 push rsi 
+0x18269b3d6 push rdi 
+0x18269b3d7 push r14 
+0x18269b3d9 sub rsp, 0x40 
+0x18269b3dd mov rsi, rcx 
+0x18269b3e0 cmp byte ptr [rip + 0x38ad75f], 0 
+0x18269b3e7 jne 0x18269b490 
+0x18269b3ed lea rcx, [rip + 0x35041f4] 
+0x18269b3f4 call 0x18050a950 
+0x18269b3f9 lea rcx, [rip + 0x3502fe0] 
+0x18269b400 call 0x18050a950 
+0x18269b405 lea rcx, [rip + 0x3592a7c] 
+0x18269b40c call 0x18050a950 
+0x18269b411 lea rcx, [rip + 0x3534410] 
+0x18269b418 call 0x18050a950 
+0x18269b41d lea rcx, [rip + 0x3555874] 
+0x18269b424 call 0x18050a950 
+0x18269b429 lea rcx, [rip + 0x35617a0] 
+0x18269b430 call 0x18050a950 
+0x18269b435 lea rcx, [rip + 0x353646c] 
+0x18269b43c call 0x18050a950 
+0x18269b441 lea rcx, [rip + 0x350d5b0] 
+0x18269b448 call 0x18050a950 
+0x18269b44d lea rcx, [rip + 0x3584a44] 
+0x18269b454 call 0x18050a950 
+0x18269b459 lea rcx, [rip + 0x350d1e8] 
+0x18269b460 call 0x18050a950 
+0x18269b465 lea rcx, [rip + 0x34e561c] 
+0x18269b46c call 0x18050a950 
+0x18269b471 lea rcx, [rip + 0x3598600] 
+0x18269b478 call 0x18050a950 
+0x18269b47d lea rcx, [rip + 0x352f81c] 
+0x18269b484 call 0x18050a950 
+0x18269b489 mov byte ptr [rip + 0x38ad6b6], 1 
+0x18269b490 mov rcx, qword ptr [rip + 0x3502f49] 
+0x18269b497 call 0x182045330 GameCore.HotUpdate.BaseSingleton`1::get_Instance
+0x18269b49c test rax, rax 
+0x18269b49f je 0x18269b69a 
+0x18269b4a5 mov r14, qword ptr [rax + 0x180] 
+0x18269b4ac mov qword ptr [rsp + 0x20], r14 
+0x18269b4b1 test r14, r14 
+0x18269b4b4 je 0x18269b69a 
+0x18269b4ba test rsi, rsi 
+0x18269b4bd je 0x18269b69a 
+0x18269b4c3 cmp qword ptr [rsi + 0xe0], 0 
+0x18269b4cb je 0x18269b69a 
+0x18269b4d1 xor r8d, r8d 
+0x18269b4d4 mov rdx, qword ptr [rip + 0x352f7c5] 
+0x18269b4db mov rcx, r14 
+0x18269b4de call 0x182836b80 GameCore.HotUpdate.Battle.Logic.TagManager::HasTag
+0x18269b4e3 test al, al 
+0x18269b4e5 jne 0x18269b69a 
+0x18269b4eb mov rcx, qword ptr [rip + 0x35040f6] 
+0x18269b4f2 call 0x182045330 GameCore.HotUpdate.BaseSingleton`1::get_Instance
+0x18269b4f7 test rax, rax 
+0x18269b4fa je 0x18269b6a8 
+0x18269b500 xor edx, edx 
+0x18269b502 mov rcx, rax 
+0x18269b505 call 0x182f63850 GameCore.HotUpdate.ConfigManager::GetAll_Config_MapPoint
+0x18269b50a test rax, rax 
+0x18269b50d je 0x18269b69a 
+0x18269b513 xor dil, dil 
+0x18269b516 mov byte ptr [rsp + 0x70], dil 
+0x18269b51b xor ecx, ecx 
+0x18269b51d mov r8, rax 
+0x18269b520 mov rdx, qword ptr [rip + 0x3555771] 
+0x18269b527 call 0x180002990 
+0x18269b52c mov qword ptr [rsp + 0x78], rax 
+0x18269b531 mov qword ptr [rsp + 0x30], 0 
+0x18269b53a lea rbx, [rsp + 0x78] 
+0x18269b53f mov qword ptr [rsp + 0x38], rbx 
+0x18269b544 nop dword ptr [rax] 
+0x18269b548 nop dword ptr [rax + rax] 
+0x18269b550 mov r8, qword ptr [rsp + 0x78] 
+0x18269b555 test r8, r8 
+0x18269b558 je 0x18269b6b9 
+0x18269b55e xor ecx, ecx 
+0x18269b560 mov rdx, qword ptr [rip + 0x3536341] 
+0x18269b567 call 0x180002990 
+0x18269b56c test al, al 
+0x18269b56e je 0x18269b5de 
+0x18269b570 mov r8, qword ptr [rsp + 0x78] 
+0x18269b575 test r8, r8 
+0x18269b578 je 0x18269b6b4 
+0x18269b57e xor ecx, ecx 
+0x18269b580 mov rdx, qword ptr [rip + 0x3561649] 
+0x18269b587 call 0x180002990 
+0x18269b58c test rax, rax 
+0x18269b58f je 0x18269b550 
+0x18269b591 cmp dword ptr [rax + 0x28], 3 
+0x18269b595 jne 0x18269b550 
+0x18269b597 mov dil, 1 
+0x18269b59a mov byte ptr [rsp + 0x70], dil 
+0x18269b59f mov rcx, qword ptr [rsi + 0xe0] 
+0x18269b5a6 test rcx, rcx 
+0x18269b5a9 je 0x18269b6ae 
+0x18269b5af mov r8, qword ptr [rip + 0x35848e2] 
+0x18269b5b6 mov edx, dword ptr [rax + 0x10] 
+0x18269b5b9 call 0x1812e68a0 
+0x18269b5be test al, al 
+0x18269b5c0 jne 0x18269b550 
+0x18269b5c2 cmp qword ptr [rbx], 0 
+0x18269b5c6 je 0x18269b5d9 
+0x18269b5c8 xor ecx, ecx 
+0x18269b5ca mov r8, qword ptr [rbx] 
+0x18269b5cd mov rdx, qword ptr [rip + 0x3534254] 
+0x18269b5d4 call 0x180002990 
+0x18269b5d9 jmp 0x18269b69a 
+0x18269b5de cmp qword ptr [rbx], 0 
+0x18269b5e2 je 0x18269b5f5 
+0x18269b5e4 xor ecx, ecx 
+0x18269b5e6 mov r8, qword ptr [rbx] 
+0x18269b5e9 mov rdx, qword ptr [rip + 0x3534238] 
+0x18269b5f0 call 0x180002990 
+0x18269b5f5 jmp 0x18269b62b 
+0x18269b5f7 mov r8, qword ptr [rsp + 0x38] 
+0x18269b5fc cmp qword ptr [r8], 0 
+0x18269b600 je 0x18269b613 
+0x18269b602 xor ecx, ecx 
+0x18269b604 mov r8, qword ptr [r8] 
+0x18269b607 mov rdx, qword ptr [rip + 0x353421a] 
+0x18269b60e call 0x180002990 
+0x18269b613 mov rcx, qword ptr [rsp + 0x30] 
+0x18269b618 test rcx, rcx 
+0x18269b61b jne 0x18269b6bf 
+0x18269b621 mov r14, qword ptr [rsp + 0x20] 
+0x18269b626 movzx edi, byte ptr [rsp + 0x70] 
+0x18269b62b test dil, dil 
+0x18269b62e je 0x18269b69a 
+0x18269b630 mov rcx, qword ptr [rip + 0x34e5451] 
+0x18269b637 call 0x18050ab50 
+0x18269b63c mov rbx, rax 
+0x18269b63f mov rdx, qword ptr [rip + 0x350d002] 
+0x18269b646 mov rcx, rax 
+0x18269b649 call 0x181250a50 System.Collections.Generic.LowLevelList`1::.ctor
+0x18269b64e test rbx, rbx 
+0x18269b651 je 0x18269b6a8 
+0x18269b653 mov r8, qword ptr [rip + 0x350d39e] 
+0x18269b65a mov rdx, qword ptr [rip + 0x352f63f] 
+0x18269b661 mov rcx, rbx 
+0x18269b664 call 0x180002d30 
+0x18269b669 xor r8d, r8d 
+0x18269b66c mov rdx, rbx 
+0x18269b66f mov rcx, r14 
+0x18269b672 call 0x1828364e0 GameCore.HotUpdate.Battle.Logic.TagManager::AddTags
+0x18269b677 mov rcx, qword ptr [rip + 0x359280a] 
+0x18269b67e cmp dword ptr [rcx + 0xe4], 0 
+0x18269b685 jne 0x18269b68c 
+0x18269b687 call 0x18050ac30 
+0x18269b68c xor edx, edx 
+0x18269b68e mov rcx, qword ptr [rip + 0x35983e3] 
+0x18269b695 call 0x184169520 UnityEngine.Debug::Log
+0x18269b69a mov rbx, qword ptr [rsp + 0x60] 
+0x18269b69f add rsp, 0x40 
+0x18269b6a3 pop r14 
+0x18269b6a5 pop rdi 
+0x18269b6a6 pop rsi 
+0x18269b6a7 ret  
+0x18269b6a8 call 0x18050aba0 
+0x18269b6ad nop  
+0x18269b6ae call 0x18050aba0 
+0x18269b6b3 nop  
+0x18269b6b4 call 0x18050aba0 
+0x18269b6b9 call 0x18050aba0 
+0x18269b6be nop  
+0x18269b6bf call 0x1804fc3e0 
+0x18269b6c4 int3  
+0x18269b6c5 int3  
+0x18269b6c6 int3  
+0x18269b6c7 int3  
+0x18269b6c8 int3  
+0x18269b6c9 int3  
+0x18269b6ca int3  
+0x18269b6cb int3  
+0x18269b6cc int3  
+0x18269b6cd int3  
+0x18269b6ce int3  
+0x18269b6cf int3  

@@ -1,0 +1,9 @@
+﻿option=102 before=On edit=False value=9999
+option=102 off=Off edit=False
+option=102 restored=On value=9999
+option=136 before=On edit=False value=0.5
+option=136 off=Off edit=False
+option=136 restored=On value=0.5
+option=191 before=On edit=False value=2.0
+option=191 off=Off edit=False
+option=191 restored=On value=2.0

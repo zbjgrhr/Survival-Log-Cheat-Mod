@@ -1,0 +1,58 @@
+Built-in image_gen. English localization of feature collage v2.
+Use case: text-localization. Edit the provided Chinese poster into an ALL-ENGLISH edition. Preserve the original lightning logo, dark green/mint/cream/yellow palette, aged torn-paper collage, realistic objects, map, backpack/fridge, coins/skill book, food/plants, generator/barrel, clock/trophy/save icon, and bottom arcade/claw/popcorn/drink machine illustrations. Preserve seven numbered sections, hierarchy and overall portrait composition. Reflow text and slightly widen text areas as necessary for legible English; do not shrink to tiny unreadable text. High resolution. Translate ALL Chinese headings, labels, notes, signs and book cover lettering; no Chinese should remain. Exact English content:
+
+Main title 'SURVIVAL LOG'
+Subtitle 'ALL-IN-ONE CHEAT MOD'
+01 'RESTORE & RESTOCK'
+'Restore fallen areas & trading points'
+'Refill regional shelves repeatedly'
+'No exposure gain while exploring'
+Map captions 'FALLEN AREAS' and 'RESTORED AREAS'; stall sign 'TRADING POST'.
+
+02 'BRING IT ALL HOME'
+'Custom backpack & storage grids'
+'Unlimited player & storage capacity'
+'Collect nearby items until your bag is full'
+'Scrollable inventory grids'
+Backpack paper '25 × 25 = 625 slots'.
+
+03 'CHARACTER & RESOURCES'
+'Money +100,000'
+'Faith +6'
+'Survival points +100'
+'Movement speed: 1–20×'
+'Unlimited energy / satiety / morale'
+'Max skills / Skill XP multiplier'
+Book cover 'SKILLS'.
+
+04 'FRESHNESS & DURABILITY'
+'Keep food fresh / Restore identifiable spoiled items'
+'Unlimited item uses'
+'Building & furniture durability'
+'Fast plant growth'
+
+05 'POWER, FUEL & BREWING'
+'Unlimited generation & battery charge'
+'No fuel use for generators or cooking'
+'Start brewing from the mod panel'
+
+06 'TIME & SAVE SETTINGS'
+'Time speed / Clock ±1 hour'
+'Zero travel time'
+'Unlock encyclopedia & achievements'
+'Keep ongoing settings for each save'
+'Restore temporary effects'
+Save icon caption 'SETTINGS SAVED PER SAVE FILE'.
+Fine print 'Restocking affects regional shelves. One-time actions are not repeated automatically.'
+
+07 'WORKSHOP PLANS'
+Big bright yellow headline 'WORKSHOP FIRST. NEW MAPS NEXT!'
+Supporting text must clarify first project after Workshop launches: 'First project when Workshop launches: exploration maps.'
+'New locations, events & more to discover'
+'Then: furniture you can actually use'
+'Game consoles / Claw machines / Arcade cabinets'
+'Usable computers / Popcorn makers / Drink machines'
+'More furniture slots are planned too'
+Red note 'PLANNED / NOT YET AVAILABLE'.
+
+Preserve existing functionality accurately, no item spawning or frozen time claims. The bottom future section must stay prominent, clearly separated from existing features. Keep typography beautifully aligned, natural English, all rows within image margins. One finished English poster, no additional mockup or surrounding border.

@@ -1,0 +1,52 @@
+Created with the built-in image_gen tool.
+
+CONCEPT POSTER PROMPT
+Create a polished Chinese concept infographic poster, landscape 3:2, high resolution. References are user screenshots of their own Survival Log cheat mod: use game inventory items, regional map, dark green panel as visual source material. Deliver ONE designed poster, not a screenshot grid. Brand logo: simple cream lightning bolt inside dark green circular badge with tiny inventory-grid motif, next to exact name '末日生存日志作弊器' and small 'SURVIVAL LOG / CHEAT MOD'. Editorial game-mod portfolio aesthetic, dark petrol green, mint, warm cream and signal yellow, fine technical linework, spacious typography, bold clear simplified Chinese. Main headline '把末日，玩成自己的样子'. Hero central visual: isometric open supply case with organized food, battery, tools and folded map, connected to three big clean feature callouts, using recognizable reference game items. Three prominent features with exact texts '恢复沦陷地区与交易点' '地区货架反复补满' '背包与储物自由扩容'. Secondary strip with 6 clear compact feature chips '1–20倍移速' '永久保鲜' '时间调节' '探索零暴露增长' '无限负重' '按存档固定设置'. Lower left a tasteful small cropped actual-reference style panel fragment and restored map, no Windows title bars, no error dialogs. Footer '资源 · 人物 · 储物 · 设备 · 时间与探索'. Small planned badge '后续计划：更多家具槽位'. It must read clearly at a glance, no dense paragraphs, no fake claim of unlimited grid sizes, no item spawner, no freeze time claim, no Steam or official logo. Do not imply planned furniture slots already exist. Sophisticated dimensional collage with crisp diagram labels, avoid generic neon sci-fi.
+
+FEATURE COLLAGE PROMPT
+Use case: infographic-diagram / compositing. Create ONE high-resolution portrait 2:3 Chinese feature collage poster for the user's Survival Log cheat mod, a companion to reference1 concept poster. Reference1 is branding/style, the remaining screenshots supply actual functions and game props. Reuse the circular cream lightning/grid logo and dark forest green, warm ivory, mustard yellow palette. Title exact '末日生存日志作弊器' subtitle '全功能图鉴 / CHEAT MOD'. Design an entertaining, beautifully organized survival field-guide collage: cut-out backpack, fridge, folded map, coins, skill book, food, generator, battery, clock, brewing barrel, pinned labels and small screenshots. Clean large legible Chinese typography, plenty of structure and negative space, six numbered sections with exact text below. Each section gets relevant large illustrative object cluster and tidy readable feature list, not a generic dashboard of identical cards. All content must fit and remain readable, render 2048x3072 or higher if possible.
+
+01 '让地图重新热闹起来'
+'恢复沦陷地区与交易点'
+'所有地区货架反复补满'
+'探索不增加暴露值'
+Illustration map transitioning fallen markers into mint active markers and small trading stall.
+
+02 '出门就是进货'
+'背包 / 储物格子自定义'
+'角色 / 储物无限负重'
+'附近物品批量拾取，直到背包满'
+'大背包滚动查看'
+Illustration backpack overflowing with reference food and storage refrigerator; small badge '25×25 = 625格' as example, not universal limit.
+
+03 '人物与资源'
+'金币 +100000 · 信念点 +6 · 生存点 +100'
+'1–20倍移速'
+'无限精力 / 饱腹 / 心态'
+'技能升满 / 熟练度倍率'
+Illustration coins, book, running boot, food.
+
+04 '让物资一直好用'
+'永久保鲜 / 修复可识别腐坏物'
+'无限物品使用次数'
+'建筑 / 家具耐久'
+'植物快速成熟'
+Illustration ice cream, milk, seedling and repaired hammer, amusing small sticker '囤货党的快乐'.
+
+05 '家里持续开工'
+'无限发电量 / 电池电量'
+'发电机 / 烹饪不耗燃料'
+'面板启动当前酿酒桶'
+Illustration generator, battery, cooking pot and barrel with clear connection lines.
+
+06 '节奏自己定'
+'时间流速调节 / 时间 ±1 小时'
+'零通行时间'
+'解锁图鉴 / 成就'
+'按当前存档固定所有持续设置'
+'临时效果可还原'
+Illustration clock, calendar, trophy, save icon.
+
+Bottom separate small dashed roadmap label '后续计划：更多家具槽位'.
+Fine-print footer '地区补货针对货架库存；一次性操作不自动重复。'
+Do not add functionality, no item spawner, no freeze-time promise, no unlimited grid claim. No warning dialogs, no Windows chrome, no paragraph wall, no unreadably miniature raw UI. Branding and illustrations coordinated with reference1 but use playful paper collage editorial layout. ALL six sections and their functionality must be included, legible and correctly spelled.

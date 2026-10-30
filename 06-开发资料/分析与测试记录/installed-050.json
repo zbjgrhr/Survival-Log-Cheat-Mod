@@ -1,0 +1,27 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "D647638BD602B0B254FC75F60D43D003A875622DEF1FB8F08EAF69FB58E85153",
+    "Path": "C:\\tool\\steam\\steamapps\\common\\Survival Log\\BepInEx\\plugins\\SurvivalLogTrainer.dll"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "FF9D7C1B287982B9FFE3AA6CCA7D410D53DA0800E7B08BBC38C7BD0F7D211943",
+    "Path": "C:\\Users\\zbjgr\\Desktop\\项目源码包\\末日生存日志作弊器\\末日生存日志作弊器.exe"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "18A7F2230A50E5F4EB9578E2643E1F5101CAD6D54E816F923B2F637C6AC28C8A",
+    "Path": "C:\\tool\\steam\\steamapps\\common\\Survival Log\\SurvivalLog_Data\\StreamingAssets\\WebUI\\webui-bag.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "988A9EC5DEBA725DEF24064BF73C9E13EEFC06F6BF545CFCC1DEBD5FB738AF32",
+    "Path": "C:\\tool\\steam\\steamapps\\common\\Survival Log\\SurvivalLog_Data\\StreamingAssets\\WebUI\\UI\\ToolTable\\ToolTable.html"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "5A3363A41860D719159C5A8292C96E2EF74C541076291B617F04CFE027DD6E36",
+    "Path": "C:\\tool\\steam\\steamapps\\common\\Survival Log\\SurvivalLog_Data\\StreamingAssets\\WebUI\\UI\\BackpackUI\\BackpackUI.html"
+  }
+]

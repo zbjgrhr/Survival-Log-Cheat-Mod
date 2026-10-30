@@ -1,0 +1,8 @@
+﻿gold-before=1000000
+gold-set=ok
+gold-after=12345
+food-before=On
+food-toggle=ok
+food-middle=Off
+food-restore=ok
+food-after=On

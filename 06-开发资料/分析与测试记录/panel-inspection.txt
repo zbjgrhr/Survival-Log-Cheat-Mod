@@ -1,0 +1,2 @@
+﻿pid=60740 handle=81401560 window=末日生存日志作弊器 · 控制面板 elements=50
+iconicBefore=False showResult=True foregroundResult=False iconicAfter=False

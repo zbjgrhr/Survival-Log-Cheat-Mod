@@ -1,0 +1,261 @@
+﻿Process: 48300
+Window 18616616 visible=False title=《生存日志》 v1.0 二十八项修改器
+  descendants=244
+  0 : ControlType.Text | 《生存日志》 | m_label_title | enabled=True visible=True
+  1 : ControlType.Text | v1.0 二十八项修改器 | m_label_version_title | enabled=True visible=True
+  2 : ControlType.RadioButton | 简体 | m_radiobutton_chs | enabled=True visible=True
+  3 : ControlType.Text | 简体 |  | enabled=True visible=True
+  4 : ControlType.RadioButton | 繁体 | m_radiobutton_cht | enabled=True visible=True
+  5 : ControlType.Text | 繁体 |  | enabled=True visible=True
+  6 : ControlType.RadioButton | English | m_radiobutton_eng | enabled=True visible=True
+  7 : ControlType.Text | English |  | enabled=True visible=True
+  8 : ControlType.Button |  | m_minize_box | enabled=True visible=True
+  9 : ControlType.Button |  | m_close_box | enabled=True visible=True
+  10 : ControlType.Button | 运行 Game Pass 版本 | btn_launch_gamepass | enabled=True visible=True
+  11 : ControlType.Button | 安装绕过反作弊文件 | btn_anticheat_bypass | enabled=True visible=True
+  12 : ControlType.Image |  | m_picturebox_gamecover | enabled=True visible=True
+  13 : ControlType.Text | 游戏进程名： | m_label_game_processname | enabled=True visible=True
+  14 : ControlType.Text | SurvivalLog.exe | m_label_target_processname | enabled=True visible=True
+  15 : ControlType.Text | 进程ID：13788 | m_label_processid | enabled=True visible=True
+  16 : ControlType.Text | 作者：风灵月影@3DMGAME | m_label_credit | enabled=True visible=True
+  17 : ControlType.Text | 修改器版本：最新版本 | m_label_trainer_version | enabled=True visible=True
+  18 : ControlType.Text | 检查修改器版本更新 (√) | m_label_check_for_update | enabled=True visible=True
+  19 : ControlType.Text | 风灵月影修改器合集App会员版 | m_label_flingtrainer_app | enabled=True visible=True
+  20 : ControlType.Text | 如果喜欢我的修改器, 请考虑会员支持♥ | m_label_contribute_reason | enabled=True visible=True
+  21 : ControlType.Text | 支持作者 | m_label_contribute | enabled=True visible=True
+  22 : ControlType.Text | 申请制作修改器 | m_label_request_trainers | enabled=True visible=True
+  23 : ControlType.Text | 申请更新修改器 | m_label_request_updates | enabled=True visible=True
+  24 : ControlType.Custom |  | m_trainer_initialize_overlay | enabled=True visible=True
+  25 : ControlType.Text |  |  | enabled=True visible=True
+  26 : ControlType.Text | 正在初始化修改器... | m_message | enabled=True visible=True
+  27 : ControlType.Text |  | m_custom_message | enabled=True visible=True
+  28 : ControlType.Text | 快捷键 | m_label_hotkeys | enabled=True visible=True
+  29 : ControlType.Text | 功能列表 | m_label_options | enabled=True visible=True
+  30 : ControlType.Pane |  |  | enabled=True visible=True
+  31 : ControlType.Custom |  |  | enabled=True visible=True
+  32 : ControlType.Text | 数字键 1 | m_label_hotkey | enabled=True visible=True
+  33 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=On
+  34 : ControlType.Text | 无限饱腹 | m_label_option_name | enabled=True visible=True
+  35 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  36 : ControlType.Custom |  |  | enabled=True visible=True
+  37 : ControlType.Text | 数字键 2 | m_label_hotkey | enabled=True visible=True
+  38 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  39 : ControlType.Text | 无限心态 | m_label_option_name | enabled=True visible=True
+  40 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  41 : ControlType.Custom |  |  | enabled=True visible=True
+  42 : ControlType.Text | 数字键 3 | m_label_hotkey | enabled=True visible=True
+  43 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  44 : ControlType.Text | 无限精力 | m_label_option_name | enabled=True visible=True
+  45 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  46 : ControlType.Custom |  |  | enabled=True visible=True
+  47 : ControlType.Text | 数字键 4 | m_label_hotkey | enabled=True visible=True
+  48 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=On
+  49 : ControlType.Text | 无限生命 | m_label_option_name | enabled=True visible=True
+  50 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  51 : ControlType.Custom |  |  | enabled=True visible=True
+  52 : ControlType.Text | 数字键 5 | m_label_hotkey | enabled=True visible=True
+  53 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  54 : ControlType.Text | 无限物品使用次数 | m_label_option_name | enabled=True visible=True
+  55 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  56 : ControlType.Custom |  |  | enabled=True visible=True
+  57 : ControlType.Text | 数字键 6 | m_label_hotkey | enabled=True visible=True
+  58 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  59 : ControlType.Text | 无限物品保质期 | m_label_option_name | enabled=True visible=True
+  60 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  61 : ControlType.Custom |  |  | enabled=True visible=True
+  62 : ControlType.Text | 数字键 7 | m_label_hotkey | enabled=True visible=True
+  63 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  64 : ControlType.Text | 无限建筑&家具耐久度 | m_label_option_name | enabled=True visible=True
+  65 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  66 : ControlType.Custom |  |  | enabled=True visible=True
+  67 : ControlType.Text | 数字键 8 | m_label_hotkey | enabled=True visible=True
+  68 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=On
+  69 : ControlType.Text | 无限发电量 | m_label_option_name | enabled=True visible=True
+  70 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  71 : ControlType.Custom |  |  | enabled=True visible=True
+  72 : ControlType.Text | 数字键 9 | m_label_hotkey | enabled=True visible=True
+  73 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  74 : ControlType.Text | 无限电池电量 | m_label_option_name | enabled=True visible=True
+  75 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  76 : ControlType.Custom |  |  | enabled=True visible=True
+  77 : ControlType.Text | 数字键 0 | m_label_hotkey | enabled=True visible=True
+  78 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  79 : ControlType.Text | 最高负重上限 | m_label_option_name | enabled=True visible=True
+  80 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  81 : ControlType.Custom |  |  | enabled=True visible=True
+  82 : ControlType.Custom |  |  | enabled=True visible=True
+  83 : ControlType.Text | Ctrl+数字键 1 | m_label_hotkey | enabled=True visible=True
+  84 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  85 : ControlType.Text | 增加金钱 | m_label_option_name | enabled=True visible=True
+  86 : ControlType.Custom |  | m_textbox | enabled=True visible=True
+  87 : ControlType.Edit |  | m_textbox | enabled=True visible=True value=1000000
+  88 : ControlType.ScrollBar |  | VerticalScrollBar | enabled=False visible=True
+  89 : ControlType.ScrollBar |  | HorizontalScrollBar | enabled=False visible=True
+  90 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  91 : ControlType.Custom |  |  | enabled=True visible=True
+  92 : ControlType.Text | Ctrl+数字键 2 | m_label_hotkey | enabled=True visible=True
+  93 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  94 : ControlType.Text | 编辑生存点 | m_label_option_name | enabled=True visible=True
+  95 : ControlType.Custom |  | m_textbox | enabled=True visible=True
+  96 : ControlType.Edit |  | m_textbox | enabled=True visible=True value=9999
+  97 : ControlType.ScrollBar |  | VerticalScrollBar | enabled=False visible=True
+  98 : ControlType.ScrollBar |  | HorizontalScrollBar | enabled=False visible=True
+  99 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  100 : ControlType.Custom |  |  | enabled=True visible=True
+  101 : ControlType.Text | Ctrl+数字键 3 | m_label_hotkey | enabled=True visible=True
+  102 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=On
+  103 : ControlType.Text | 编辑信念点 | m_label_option_name | enabled=True visible=True
+  104 : ControlType.Custom |  | m_textbox | enabled=False visible=True
+  105 : ControlType.Edit |  | m_textbox | enabled=False visible=True value=9999
+  106 : ControlType.ScrollBar |  | VerticalScrollBar | enabled=False visible=True
+  107 : ControlType.ScrollBar |  | HorizontalScrollBar | enabled=False visible=True
+  108 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  109 : ControlType.Custom |  |  | enabled=True visible=True
+  110 : ControlType.Text | Ctrl+数字键 4 | m_label_hotkey | enabled=True visible=True
+  111 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=On
+  112 : ControlType.Text | 免费刷新生存规则 | m_label_option_name | enabled=True visible=True
+  113 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  114 : ControlType.Custom |  |  | enabled=True visible=True
+  115 : ControlType.Text | Ctrl+数字键 5 | m_label_hotkey | enabled=True visible=True
+  116 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  117 : ControlType.Text | 最高技能熟练度 | m_label_option_name | enabled=True visible=True
+  118 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  119 : ControlType.Custom |  |  | enabled=True visible=True
+  120 : ControlType.Text | Ctrl+数字键 6 | m_label_hotkey | enabled=True visible=True
+  121 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  122 : ControlType.Text | 技能熟练度倍率 | m_label_option_name | enabled=True visible=True
+  123 : ControlType.Custom |  | m_input | enabled=True visible=True
+  124 : ControlType.Text | < | m_left | enabled=True visible=True
+  125 : ControlType.Edit |  | m_textbox | enabled=True visible=True value=2.0
+  126 : ControlType.ScrollBar |  | VerticalScrollBar | enabled=False visible=True
+  127 : ControlType.ScrollBar |  | HorizontalScrollBar | enabled=False visible=True
+  128 : ControlType.Text | > | m_right | enabled=True visible=True
+  129 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  130 : ControlType.Custom |  |  | enabled=True visible=True
+  131 : ControlType.Text | Ctrl+数字键 7 | m_label_hotkey | enabled=True visible=True
+  132 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=On
+  133 : ControlType.Text | 锁定当天时间 | m_label_option_name | enabled=True visible=True
+  134 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  135 : ControlType.Custom |  |  | enabled=True visible=True
+  136 : ControlType.Text | Ctrl+数字键 8 | m_label_hotkey | enabled=True visible=True
+  137 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=On
+  138 : ControlType.Text | 时间流逝速度 | m_label_option_name | enabled=True visible=True
+  139 : ControlType.Custom |  | m_input | enabled=False visible=True
+  140 : ControlType.Text | < | m_left | enabled=False visible=True
+  141 : ControlType.Edit |  | m_textbox | enabled=False visible=True value=0.5
+  142 : ControlType.ScrollBar |  | VerticalScrollBar | enabled=False visible=True
+  143 : ControlType.ScrollBar |  | HorizontalScrollBar | enabled=False visible=True
+  144 : ControlType.Text | > | m_right | enabled=False visible=True
+  145 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  146 : ControlType.Custom |  |  | enabled=True visible=True
+  147 : ControlType.Custom |  |  | enabled=True visible=True
+  148 : ControlType.Text | Alt+数字键 1 | m_label_hotkey | enabled=True visible=True
+  149 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  150 : ControlType.Text | 植物瞬间成熟 | m_label_option_name | enabled=True visible=True
+  151 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  152 : ControlType.Custom |  |  | enabled=True visible=True
+  153 : ControlType.Text | Alt+数字键 2 | m_label_hotkey | enabled=True visible=True
+  154 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  155 : ControlType.Text | 瞬间烹饪 | m_label_option_name | enabled=True visible=True
+  156 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  157 : ControlType.Custom |  |  | enabled=True visible=True
+  158 : ControlType.Text | Alt+数字键 3 | m_label_hotkey | enabled=True visible=True
+  159 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  160 : ControlType.Text | 无限烹饪燃料 | m_label_option_name | enabled=True visible=True
+  161 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  162 : ControlType.Custom |  |  | enabled=True visible=True
+  163 : ControlType.Text | Alt+数字键 4 | m_label_hotkey | enabled=True visible=True
+  164 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  165 : ControlType.Text | 制作不消耗材料 | m_label_option_name | enabled=True visible=True
+  166 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  167 : ControlType.Custom |  |  | enabled=True visible=True
+  168 : ControlType.Text | Alt+数字键 5 | m_label_hotkey | enabled=True visible=True
+  169 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  170 : ControlType.Text | 解锁无尽模式 | m_label_option_name | enabled=True visible=True
+  171 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  172 : ControlType.Custom |  |  | enabled=True visible=True
+  173 : ControlType.Text | Alt+数字键 6 | m_label_hotkey | enabled=True visible=True
+  174 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  175 : ControlType.Text | 解锁全部图鉴 | m_label_option_name | enabled=True visible=True
+  176 : ControlType.Custom |  | m_textbox | enabled=True visible=True
+  177 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  178 : ControlType.Custom |  |  | enabled=True visible=True
+  179 : ControlType.Text | Alt+数字键 7 | m_label_hotkey | enabled=True visible=True
+  180 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  181 : ControlType.Text | 解锁全部成就 | m_label_option_name | enabled=True visible=True
+  182 : ControlType.Custom |  | m_textbox | enabled=True visible=True
+  183 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  184 : ControlType.Custom |  |  | enabled=True visible=True
+  185 : ControlType.Text | Alt+数字键 8 | m_label_hotkey | enabled=True visible=True
+  186 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  187 : ControlType.Text | 零地图移动时间 | m_label_option_name | enabled=True visible=True
+  188 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  189 : ControlType.Custom |  |  | enabled=True visible=True
+  190 : ControlType.Text | Alt+数字键 9 | m_label_hotkey | enabled=True visible=True
+  191 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=On
+  192 : ControlType.Text | 设置移动速度 | m_label_option_name | enabled=True visible=True
+  193 : ControlType.Custom |  | m_input | enabled=False visible=True
+  194 : ControlType.Text | < | m_left | enabled=False visible=True
+  195 : ControlType.Edit |  | m_textbox | enabled=False visible=True value=2.0
+  196 : ControlType.ScrollBar |  | VerticalScrollBar | enabled=False visible=True
+  197 : ControlType.ScrollBar |  | HorizontalScrollBar | enabled=False visible=True
+  198 : ControlType.Text | > | m_right | enabled=False visible=True
+  199 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  200 : ControlType.Custom |  |  | enabled=True visible=True
+  201 : ControlType.Text | Alt+数字键 0 | m_label_hotkey | enabled=True visible=True
+  202 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  203 : ControlType.Text | 设置游戏速度 | m_label_option_name | enabled=True visible=True
+  204 : ControlType.Custom |  | m_input | enabled=True visible=True
+  205 : ControlType.Text | < | m_left | enabled=True visible=True
+  206 : ControlType.Edit |  | m_textbox | enabled=True visible=True value=2.5
+  207 : ControlType.ScrollBar |  | VerticalScrollBar | enabled=False visible=True
+  208 : ControlType.ScrollBar |  | HorizontalScrollBar | enabled=False visible=True
+  209 : ControlType.Text | > | m_right | enabled=True visible=True
+  210 : ControlType.Custom |  | m_tooltip | enabled=True visible=True
+  211 : ControlType.ScrollBar |  | VerticalScrollBar | enabled=False visible=True
+  212 : ControlType.ScrollBar |  | HorizontalScrollBar | enabled=False visible=True
+  213 : ControlType.Thumb |  | Thumb | enabled=False visible=True
+  214 : ControlType.Button |  | PageUp | enabled=False visible=True
+  215 : ControlType.Button |  | PageDown | enabled=False visible=True
+  216 : ControlType.Text | 其他说明：Ctrl+Shift+Home禁用/启用快捷键；免费修改器，希望玩家广告支持！ | m_label_ads_by_3dm | enabled=True visible=True
+  217 : ControlType.Button |  | m_ads_by_3dm | enabled=True visible=True
+  218 : ControlType.Image |  | m_image_ads_by_3dm | enabled=True visible=True
+  219 : ControlType.Text | General Notes: Press Ctrl+Shift+Home to disable/enable hotkeys. | m_general_notes | enabled=True visible=True
+  220 : ControlType.Button |  | m_picturebox_wemod | enabled=True visible=True
+  221 : ControlType.Image |  | m_picturebox_wemod_image | enabled=True visible=True
+  222 : ControlType.Text | 修改器设置 | m_label_trainer_settings | enabled=True visible=True
+  223 : ControlType.Custom |  | m_setting_hotkey | enabled=True visible=True
+  224 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  225 : ControlType.Text | 可编辑快捷键 | m_label_name | enabled=True visible=True
+  226 : ControlType.Text | (点击任意快捷键对其进行编辑) (Ctrl+Shift+Home 可禁用/启用快捷键检测) | m_setting_hotkey_note | enabled=True visible=True
+  227 : ControlType.Custom |  | m_setting_save_values | enabled=True visible=True
+  228 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  229 : ControlType.Text | 保存输入数值 | m_label_name | enabled=True visible=True
+  230 : ControlType.Text | (每个功能的输入数值都将被保存，以后运行修改器无需重新输入) | m_setting_save_values_note | enabled=True visible=True
+  231 : ControlType.Custom |  | m_setting_auto_enable | enabled=True visible=True
+  232 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  233 : ControlType.Text | 自动激活保存的功能 | m_label_name | enabled=True visible=True
+  234 : ControlType.Text | (修改器检测到游戏后会自动激活被保存的功能) | m_setting_auto_enable_note | enabled=True visible=True
+  235 : ControlType.Custom |  | m_setting_save_options | enabled=True visible=True
+  236 : ControlType.Button |  | m_toggle_button | enabled=True visible=True toggle=Off
+  237 : ControlType.Text | 保存当前激活的功能 | m_label_name | enabled=True visible=True
+  238 : ControlType.Text | (将当前激活的功能保存，用于"自动激活保存的功能"选项) | m_setting_save_options_note | enabled=True visible=True
+  239 : ControlType.Text | 请输入快捷键 | edit_hotkey_overlay_message_title | enabled=True visible=True
+  240 : ControlType.Text | ... | edit_hotkey_overlay_input_label | enabled=True visible=True
+  241 : ControlType.Text | 为避免编辑期间误按其他功能的快捷键，建议在游戏未运行时进行编辑 | edit_hotkey_overlay_message_1 | enabled=True visible=True
+  242 : ControlType.Text | 按Esc键取消编辑，如果要恢复默认快捷键，请取消"可编辑快捷键"选项并重启修改器 | edit_hotkey_overlay_message_2 | enabled=True visible=True
+  243 : ControlType.Text | 已成功保存当前激活的功能！ | trainer_message_overlay_message | enabled=True visible=True
+Window 26351504 visible=False title=Hidden Window
+  descendants=0
+Window 60101468 visible=False title=
+  descendants=0
+Window 77535016 visible=False title=SystemResourceNotifyWindow
+  descendants=0
+Window 14423962 visible=False title=MediaContextNotificationWindow
+  descendants=0
+Window 14223414 visible=False title=
+  descendants=0
+Window 162467292 visible=False title=MSCTFIME UI
+  descendants=0
+Window 48763666 visible=False title=Default IME
+  descendants=0

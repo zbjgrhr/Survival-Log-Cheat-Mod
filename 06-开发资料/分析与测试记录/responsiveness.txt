@@ -1,0 +1,40 @@
+﻿pid=49996 handle=35591032
+child=21829182 text=生存
+child=65209348 text=无限饱腹
+child=42077800 text=已开启
+child=7608846 text=切换
+child=19925584 text=无限心态
+child=58594968 text=已关闭
+child=122950156 text=切换
+child=11999366 text=无限精力
+child=62330688 text=已关闭
+child=37162456 text=切换
+child=17307204 text=无限生命
+child=36569980 text=已开启
+child=16257590 text=切换
+child=81663704 text=无限物品使用次数
+child=30938532 text=已关闭
+child=68948312 text=切换
+child=23007176 text=无限物品保质期
+child=36377078 text=已关闭
+child=85134950 text=切换
+child=5114432 text=无限建筑/家具耐久
+child=42077662 text=已关闭
+child=41682758 text=切换
+child=32639820 text=无限发电量
+child=15077402 text=已开启
+child=35917570 text=切换
+child=54527226 text=无限电池电量
+child=54526752 text=已关闭
+child=53087744 text=切换
+child=46273058 text=最高负重上限
+child=58856034 text=已关闭
+child=93590156 text=切换
+child=77862266 text=SURVIVAL LOG  /  控制台
+child=8002408 text=游戏 运行中  ·  已读取 28 项原修改器开关
+child=57803876 text=启动原修改器
+child=10488014 text=刷新状态
+child=46928842 text=显示原修改器的开关和设定值；游戏内效果尚未验证。
+maxLatencyMs=14.9711 failed=0
+refreshClickMaxMs=11.1675 failed=0
+toggleClickMs=8.5275:True,6.832:True

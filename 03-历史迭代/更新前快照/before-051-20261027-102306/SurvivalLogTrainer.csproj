@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <AssemblyName>SurvivalLogTrainer</AssemblyName>
+    <Version>0.5.0</Version>
+    <GameDir>C:\tool\steam\steamapps\common\Survival Log</GameDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <_GameRef Include="$(GameDir)\BepInEx\core\*.dll" />
+    <_GameRef Include="$(GameDir)\BepInEx\interop\HotUpdate.dll" />
+    <_GameRef Include="$(GameDir)\BepInEx\interop\Il2Cppmscorlib.dll" />
+    <_GameRef Include="$(GameDir)\BepInEx\interop\Il2CppSystem.dll" />
+    <_GameRef Include="$(GameDir)\BepInEx\interop\UnityEngine.CoreModule.dll" />
+    <Reference Include="@(_GameRef)">
+      <HintPath>%(FullPath)</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

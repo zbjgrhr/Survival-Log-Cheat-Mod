@@ -1,0 +1,1 @@
+pid=44948 window=17696444 responding=True

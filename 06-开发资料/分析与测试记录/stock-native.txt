@@ -1,0 +1,192 @@
+
+METHOD GameCore.HotUpdate.ReduxUI.Reducer_Web_TradeUI::GetShelfFillPct
+0x182caa770 mov qword ptr [rsp + 0x10], rbx 
+0x182caa775 mov qword ptr [rsp + 0x18], rsi 
+0x182caa77a mov qword ptr [rsp + 0x20], rdi 
+0x182caa77f push r14 
+0x182caa781 sub rsp, 0x80 
+0x182caa788 movaps xmmword ptr [rsp + 0x70], xmm6 
+0x182caa78d mov edi, r8d 
+0x182caa790 movzx esi, dl 
+0x182caa793 mov ebx, ecx 
+0x182caa795 cmp byte ptr [rip + 0x32a0f24], 0 
+0x182caa79c jne 0x182caa805 
+0x182caa79e lea rcx, [rip + 0x2ef591b] 
+0x182caa7a5 call 0x18050a950 
+0x182caa7aa lea rcx, [rip + 0x2ef4e37] 
+0x182caa7b1 call 0x18050a950 
+0x182caa7b6 lea rcx, [rip + 0x2f7c373] 
+0x182caa7bd call 0x18050a950 
+0x182caa7c2 lea rcx, [rip + 0x2f0065f] 
+0x182caa7c9 call 0x18050a950 
+0x182caa7ce lea rcx, [rip + 0x2f0078b] 
+0x182caa7d5 call 0x18050a950 
+0x182caa7da lea rcx, [rip + 0x2f008bf] 
+0x182caa7e1 call 0x18050a950 
+0x182caa7e6 lea rcx, [rip + 0x2f78fbb] 
+0x182caa7ed call 0x18050a950 
+0x182caa7f2 lea rcx, [rip + 0x2f76bdf] 
+0x182caa7f9 call 0x18050a950 
+0x182caa7fe mov byte ptr [rip + 0x32a0ebb], 1 
+0x182caa805 test ebx, ebx 
+0x182caa807 jle 0x182caaa53 
+0x182caa80d mov rcx, qword ptr [rip + 0x2ef4dd4] 
+0x182caa814 call 0x182045330 GameCore.HotUpdate.BaseSingleton`1::get_Instance
+0x182caa819 test rax, rax 
+0x182caa81c je 0x182caaa7d 
+0x182caa822 xor r8d, r8d 
+0x182caa825 mov edx, ebx 
+0x182caa827 mov rcx, rax 
+0x182caa82a call 0x182f722c0 GameCore.HotUpdate.ConfigManager::Get_Config_Shop
+0x182caa82f test rax, rax 
+0x182caa832 je 0x182caaa53 
+0x182caa838 cmp qword ptr [rax + 0x40], 0 
+0x182caa83d je 0x182caaa53 
+0x182caa843 mov rcx, qword ptr [rax + 0x40] 
+0x182caa847 cmp dword ptr [rcx + 0x18], 0 
+0x182caa84b je 0x182caaa53 
+0x182caa851 xor edx, edx 
+0x182caa853 mov rcx, rax 
+0x182caa856 call 0x182cb9d50 GameCore.HotUpdate.ReduxUI.Reducer_Web_TradeUI::SumFullCount
+0x182caa85b mov r14d, eax 
+0x182caa85e mov dword ptr [rsp + 0x20], eax 
+0x182caa862 test eax, eax 
+0x182caa864 jle 0x182caaa53 
+0x182caa86a mov rcx, qword ptr [rip + 0x2ef584f] 
+0x182caa871 call 0x182045330 GameCore.HotUpdate.BaseSingleton`1::get_Instance
+0x182caa876 test rax, rax 
+0x182caa879 je 0x182caaa53 
+0x182caa87f xor edx, edx 
+0x182caa881 mov rcx, rax 
+0x182caa884 call 0x180614f50 Unity.Services.Core.Registration.CorePackageInitializer::get_ProjectConfig
+0x182caa889 test rax, rax 
+0x182caa88c je 0x182caaa53 
+0x182caa892 cmp qword ptr [rax + 0x80], 0 
+0x182caa89a je 0x182caaa53 
+0x182caa8a0 xor r9d, r9d 
+0x182caa8a3 mov r8d, edi 
+0x182caa8a6 movzx edx, sil 
+0x182caa8aa mov ecx, ebx 
+0x182caa8ac call 0x182cb5200 GameCore.HotUpdate.ReduxUI.Reducer_Web_TradeUI::ResolveActiveShelf
+0x182caa8b1 xor edx, edx 
+0x182caa8b3 mov rcx, rax 
+0x182caa8b6 call 0x182cae1e0 GameCore.HotUpdate.ReduxUI.Reducer_Web_TradeUI::ParsePicks
+0x182caa8bb xor esi, esi 
+0x182caa8bd mov edi, esi 
+0x182caa8bf mov dword ptr [rsp + 0x90], esi 
+0x182caa8c6 test rax, rax 
+0x182caa8c9 je 0x182caaa7d 
+0x182caa8cf mov r8, qword ptr [rip + 0x2f7c25a] 
+0x182caa8d6 mov rdx, rax 
+0x182caa8d9 lea rcx, [rsp + 0x30] 
+0x182caa8de call 0x1822831b0 
+0x182caa8e3 movups xmm0, xmmword ptr [rsp + 0x30] 
+0x182caa8e8 movups xmmword ptr [rsp + 0x50], xmm0 
+0x182caa8ed movups xmm1, xmmword ptr [rsp + 0x40] 
+0x182caa8f2 movups xmmword ptr [rsp + 0x60], xmm1 
+0x182caa8f7 mov qword ptr [rsp + 0x30], rsi 
+0x182caa8fc lea rbx, [rsp + 0x50] 
+0x182caa901 mov qword ptr [rsp + 0x38], rbx 
+0x182caa906 nop word ptr [rax + rax] 
+0x182caa910 mov rdx, qword ptr [rip + 0x2f00649] 
+0x182caa917 lea rcx, [rsp + 0x50] 
+0x182caa91c call 0x18248bfd0 
+0x182caa921 test al, al 
+0x182caa923 je 0x182caa944 
+0x182caa925 mov rax, qword ptr [rsp + 0x60] 
+0x182caa92a mov rcx, rax 
+0x182caa92d shr rcx, 0x20 
+0x182caa931 test ecx, ecx 
+0x182caa933 jle 0x182caa910 
+0x182caa935 shr rax, 0x20 
+0x182caa939 add edi, eax 
+0x182caa93b mov dword ptr [rsp + 0x90], edi 
+0x182caa942 jmp 0x182caa910 
+0x182caa944 mov rdx, qword ptr [rip + 0x2f004dd] 
+0x182caa94b mov rcx, rbx 
+0x182caa94e call 0x18060eaa0 Unity.Services.Core.Telemetry.Internal.Metrics::Unity.Services.Core.Telemetry.Internal.IMetrics.SendSumMetric
+0x182caa953 jmp 0x182caa982 
+0x182caa955 mov rdx, qword ptr [rip + 0x2f004cc] 
+0x182caa95c mov rcx, qword ptr [rsp + 0x38] 
+0x182caa961 call 0x18060eaa0 Unity.Services.Core.Telemetry.Internal.Metrics::Unity.Services.Core.Telemetry.Internal.IMetrics.SendSumMetric
+0x182caa966 mov rcx, qword ptr [rsp + 0x30] 
+0x182caa96b test rcx, rcx 
+0x182caa96e jne 0x182caaa77 
+0x182caa974 xor esi, esi 
+0x182caa976 mov r14d, dword ptr [rsp + 0x20] 
+0x182caa97b mov edi, dword ptr [rsp + 0x90] 
+0x182caa982 cmp byte ptr [rip + 0x32a0d39], 0 
+0x182caa989 jne 0x182caa99e 
+0x182caa98b lea rcx, [rip + 0x2f6d15e] 
+0x182caa992 call 0x18050a950 
+0x182caa997 mov byte ptr [rip + 0x32a0d24], 1 
+0x182caa99e test edi, edi 
+0x182caa9a0 jle 0x182caaa4f 
+0x182caa9a6 cmp edi, r14d 
+0x182caa9a9 jge 0x182caaa4a 
+0x182caa9af mov rcx, qword ptr [rip + 0x2f6d13a] 
+0x182caa9b6 cmp dword ptr [rcx + 0xe4], 0 
+0x182caa9bd jne 0x182caa9c4 
+0x182caa9bf call 0x18050ac30 
+0x182caa9c4 movd xmm6, edi 
+0x182caa9c8 cvtdq2pd xmm6, xmm6 
+0x182caa9cc movd xmm0, r14d 
+0x182caa9d1 cvtdq2pd xmm0, xmm0 
+0x182caa9d5 divsd xmm6, xmm0 
+0x182caa9d9 mulsd xmm6, qword ptr [rip + 0x19c992f] 
+0x182caa9e1 cmp byte ptr [rip + 0x329ed04], 0 
+0x182caa9e8 jne 0x182caa9fd 
+0x182caa9ea lea rcx, [rip + 0x2f6d0ff] 
+0x182caa9f1 call 0x18050a950 
+0x182caa9f6 mov byte ptr [rip + 0x329ecef], 1 
+0x182caa9fd mov rcx, qword ptr [rip + 0x2f6d0ec] 
+0x182caaa04 cmp dword ptr [rcx + 0xe4], 0 
+0x182caaa0b jne 0x182caaa12 
+0x182caaa0d call 0x18050ac30 
+0x182caaa12 xor r9d, r9d 
+0x182caaa15 xor edx, edx 
+0x182caaa17 mov r8d, 1 
+0x182caaa1d movaps xmm0, xmm6 
+0x182caaa20 call 0x18342a9f0 System.Math::Round
+0x182caaa25 cvttsd2si eax, xmm0 
+0x182caaa29 lea esi, [rax + rax*4] 
+0x182caaa2c add esi, esi 
+0x182caaa2e cmp esi, 0xa 
+0x182caaa31 jl 0x182caaa41 
+0x182caaa33 cmp esi, 0x5a 
+0x182caaa36 jle 0x182caaa4f 
+0x182caaa38 mov esi, 0x5a 
+0x182caaa3d mov eax, esi 
+0x182caaa3f jmp 0x182caaa58 
+0x182caaa41 mov esi, 0xa 
+0x182caaa46 mov eax, esi 
+0x182caaa48 jmp 0x182caaa58 
+0x182caaa4a mov esi, 0x64 
+0x182caaa4f mov eax, esi 
+0x182caaa51 jmp 0x182caaa58 
+0x182caaa53 mov eax, 0xffffffff 
+0x182caaa58 lea r11, [rsp + 0x80] 
+0x182caaa60 mov rbx, qword ptr [r11 + 0x18] 
+0x182caaa64 mov rsi, qword ptr [r11 + 0x20] 
+0x182caaa68 mov rdi, qword ptr [r11 + 0x28] 
+0x182caaa6c movaps xmm6, xmmword ptr [rsp + 0x70] 
+0x182caaa71 mov rsp, r11 
+0x182caaa74 pop r14 
+0x182caaa76 ret  
+0x182caaa77 call 0x1804fc3e0 
+0x182caaa7c int3  
+0x182caaa7d call 0x18050aba0 
+0x182caaa82 int3  
+0x182caaa83 int3  
+0x182caaa84 int3  
+0x182caaa85 int3  
+0x182caaa86 int3  
+0x182caaa87 int3  
+0x182caaa88 int3  
+0x182caaa89 int3  
+0x182caaa8a int3  
+0x182caaa8b int3  
+0x182caaa8c int3  
+0x182caaa8d int3  
+0x182caaa8e int3  
+0x182caaa8f int3  

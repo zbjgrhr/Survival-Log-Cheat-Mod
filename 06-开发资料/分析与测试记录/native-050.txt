@@ -1,0 +1,302 @@
+
+METHOD GameCore.HotUpdate.Battle.Logic.ExploreManager::Update
+0x1826b2060 push rbx 
+0x1826b2062 sub rsp, 0x90 
+0x1826b2069 cmp byte ptr [rip + 0x3896c24], 0 
+0x1826b2070 mov rbx, rcx 
+0x1826b2073 movaps xmmword ptr [rsp + 0x70], xmm7 
+0x1826b2078 movaps xmm7, xmm1 
+0x1826b207b movaps xmmword ptr [rsp + 0x50], xmm9 
+0x1826b2081 movaps xmm9, xmm2 
+0x1826b2085 jne 0x1826b20d6 
+0x1826b2087 lea rcx, [rip + 0x351499a] 
+0x1826b208e call 0x18050a950 
+0x1826b2093 lea rcx, [rip + 0x35179be] 
+0x1826b209a call 0x18050a950 
+0x1826b209f lea rcx, [rip + 0x34ec33a] 
+0x1826b20a6 call 0x18050a950 
+0x1826b20ab lea rcx, [rip + 0x356ff96] 
+0x1826b20b2 call 0x18050a950 
+0x1826b20b7 lea rcx, [rip + 0x35651ca] 
+0x1826b20be call 0x18050a950 
+0x1826b20c3 lea rcx, [rip + 0x3564f3e] 
+0x1826b20ca call 0x18050a950 
+0x1826b20cf mov byte ptr [rip + 0x3896bbe], 1 
+0x1826b20d6 cmp byte ptr [rbx + 0x31], 0 
+0x1826b20da jne 0x1826b243d 
+0x1826b20e0 mov qword ptr [rsp + 0xa8], rsi 
+0x1826b20e8 mov qword ptr [rsp + 0xa0], rbp 
+0x1826b20f0 mov qword ptr [rsp + 0xb0], rdi 
+0x1826b20f8 mov qword ptr [rsp + 0xb8], r14 
+0x1826b2100 movaps xmmword ptr [rsp + 0x80], xmm6 
+0x1826b2108 movaps xmmword ptr [rsp + 0x60], xmm8 
+0x1826b210e xor esi, esi 
+0x1826b2110 cmp byte ptr [rbx + 0x30], sil 
+0x1826b2114 jne 0x1826b2253 
+0x1826b211a cmp dword ptr [rbx + 0x68], 0x3ed 
+0x1826b2121 jne 0x1826b2253 
+0x1826b2127 mov byte ptr [rbx + 0x30], 1 
+0x1826b212b xor edx, edx 
+0x1826b212d mov rcx, qword ptr [rip + 0x3564ed4] 
+0x1826b2134 call 0x1831c09b0 GameCore.HotUpdate.Battle.Logic.GameCounter::GetCounter
+0x1826b2139 cmp eax, 0xa 
+0x1826b213c jl 0x1826b2253 
+0x1826b2142 mov rcx, qword ptr [rip + 0x34ec297] 
+0x1826b2149 call 0x182045330 GameCore.HotUpdate.BaseSingleton`1::get_Instance
+0x1826b214e test rax, rax 
+0x1826b2151 je 0x1826b2451 
+0x1826b2157 mov rdi, qword ptr [rax + 0x40] 
+0x1826b215b test rdi, rdi 
+0x1826b215e je 0x1826b2253 
+0x1826b2164 xor r8d, r8d 
+0x1826b2167 mov edx, 0xa41d 
+0x1826b216c mov rcx, rdi 
+0x1826b216f call 0x183033300 GameCore.HotUpdate.Battle.Logic.AgentManager::GetFurnitureByConfigId
+0x1826b2174 mov rbp, rax 
+0x1826b2177 test rax, rax 
+0x1826b217a je 0x1826b2253 
+0x1826b2180 mov rdx, qword ptr [rip + 0x35178d1] 
+0x1826b2187 mov rcx, rax 
+0x1826b218a call 0x180de7790 GameCore.HotUpdate.Battle.Logic.AgentTools::GetAgentComponent
+0x1826b218f test rax, rax 
+0x1826b2192 je 0x1826b21ae 
+0x1826b2194 xor r8d, r8d 
+0x1826b2197 lea rcx, [rsp + 0x40] 
+0x1826b219c mov rdx, rax 
+0x1826b219f call 0x18302dc70 GameCore.HotUpdate.Battle.Logic.TransformComponent::get_Position
+0x1826b21a4 movsd xmm6, qword ptr [rax] 
+0x1826b21a8 mov r14d, dword ptr [rax + 8] 
+0x1826b21ac jmp 0x1826b21e0 
+0x1826b21ae cmp byte ptr [rip + 0x388e308], sil 
+0x1826b21b5 jne 0x1826b21ca 
+0x1826b21b7 lea rcx, [rip + 0x35663a2] 
+0x1826b21be call 0x18050a950 
+0x1826b21c3 mov byte ptr [rip + 0x388e2f3], 1 
+0x1826b21ca mov rax, qword ptr [rip + 0x356638f] 
+0x1826b21d1 mov rdx, qword ptr [rax + 0xb8] 
+0x1826b21d8 movsd xmm6, qword ptr [rdx] 
+0x1826b21dc mov r14d, dword ptr [rdx + 8] 
+0x1826b21e0 mov rdx, qword ptr [rbp + 0x10] 
+0x1826b21e4 xor r8d, r8d 
+0x1826b21e7 mov rcx, rdi 
+0x1826b21ea call 0x1830386c0 GameCore.HotUpdate.Battle.Logic.AgentManager::RemoveFurniture
+0x1826b21ef mov rcx, qword ptr [rip + 0x3565092] 
+0x1826b21f6 xor edx, edx 
+0x1826b21f8 call 0x1831c09b0 GameCore.HotUpdate.Battle.Logic.GameCounter::GetCounter
+0x1826b21fd test eax, eax 
+0x1826b21ff jne 0x1826b2253 
+0x1826b2201 mov rcx, qword ptr [rip + 0x34ec1d8] 
+0x1826b2208 call 0x182045330 GameCore.HotUpdate.BaseSingleton`1::get_Instance
+0x1826b220d test rax, rax 
+0x1826b2210 je 0x1826b2451 
+0x1826b2216 mov rcx, qword ptr [rax + 0x258] 
+0x1826b221d test rcx, rcx 
+0x1826b2220 je 0x1826b2253 
+0x1826b2222 lea rax, [rsp + 0x40] 
+0x1826b2227 mov qword ptr [rsp + 0x30], rsi 
+0x1826b222c mov qword ptr [rsp + 0x28], rax 
+0x1826b2231 xor r9d, r9d 
+0x1826b2234 mov edx, 0x2357 
+0x1826b2239 mov dword ptr [rsp + 0x20], esi 
+0x1826b223d mov r8d, 1 
+0x1826b2243 movsd qword ptr [rsp + 0x40], xmm6 
+0x1826b2249 mov dword ptr [rsp + 0x48], r14d 
+0x1826b224e call 0x18269eae0 GameCore.HotUpdate.Battle.Logic.DropItemManager::DropItemAtPosition
+0x1826b2253 mov rcx, qword ptr [rip + 0x356fdee] 
+0x1826b225a cmp dword ptr [rcx + 0xe4], esi 
+0x1826b2260 jne 0x1826b2267 
+0x1826b2262 call 0x18050ac30 
+0x1826b2267 cmp byte ptr [rip + 0x3896a48], sil 
+0x1826b226e jne 0x1826b2283 
+0x1826b2270 lea rcx, [rip + 0x356fdd1] 
+0x1826b2277 call 0x18050a950 
+0x1826b227c mov byte ptr [rip + 0x3896a33], 1 
+0x1826b2283 mov rcx, qword ptr [rip + 0x356fdbe] 
+0x1826b228a cmp dword ptr [rcx + 0xe4], esi 
+0x1826b2290 jne 0x1826b2297 
+0x1826b2292 call 0x18050ac30 
+0x1826b2297 mov rax, qword ptr [rip + 0x356fdaa] 
+0x1826b229e mov rcx, qword ptr [rax + 0xb8] 
+0x1826b22a5 cmp byte ptr [rcx + 5], sil 
+0x1826b22a9 jne 0x1826b237a 
+0x1826b22af mov rcx, qword ptr [rip + 0x34ec12a] 
+0x1826b22b6 xorps xmm8, xmm8 
+0x1826b22ba xorps xmm6, xmm6 
+0x1826b22bd call 0x182045330 GameCore.HotUpdate.BaseSingleton`1::get_Instance
+0x1826b22c2 test rax, rax 
+0x1826b22c5 je 0x1826b2451 
+0x1826b22cb mov rcx, qword ptr [rax + 0x40] 
+0x1826b22cf test rcx, rcx 
+0x1826b22d2 je 0x1826b2451 
+0x1826b22d8 xor edx, edx 
+0x1826b22da call 0x183034010 GameCore.HotUpdate.Battle.Logic.AgentManager::GetLeadingRole
+0x1826b22df test rax, rax 
+0x1826b22e2 je 0x1826b230b 
+0x1826b22e4 mov rdx, qword ptr [rip + 0x351473d] 
+0x1826b22eb mov rcx, rax 
+0x1826b22ee call 0x180de7790 GameCore.HotUpdate.Battle.Logic.AgentTools::GetAgentComponent
+0x1826b22f3 test rax, rax 
+0x1826b22f6 je 0x1826b230b 
+0x1826b22f8 xor r8d, r8d 
+0x1826b22fb mov edx, 0x2713 
+0x1826b2300 mov rcx, rax 
+0x1826b2303 call 0x182fe6610 GameCore.HotUpdate.Battle.Logic.AttributeComponent::GetTotalValue_Float
+0x1826b2308 movaps xmm6, xmm0 
+0x1826b230b movaps xmm1, xmm6 
+0x1826b230e movss xmm0, dword ptr [rip + 0x1fbba56] 
+0x1826b2316 addss xmm1, xmm0 
+0x1826b231a movaps xmm2, xmm7 
+0x1826b231d mulss xmm2, dword ptr [rbx + 0x3c] 
+0x1826b2322 mulss xmm2, xmm1 
+0x1826b2326 addss xmm2, dword ptr [rbx + 0x34] 
+0x1826b232b movss dword ptr [rbx + 0x34], xmm2 
+0x1826b2330 cmp byte ptr [rbx + 0x48], sil 
+0x1826b2334 je 0x1826b234c 
+0x1826b2336 mulss xmm7, dword ptr [rbx + 0x44] 
+0x1826b233b addss xmm6, xmm0 
+0x1826b233f mulss xmm7, xmm6 
+0x1826b2343 addss xmm7, xmm2 
+0x1826b2347 movss dword ptr [rbx + 0x34], xmm7 
+0x1826b234c movss xmm6, dword ptr [rbx + 0x34] 
+0x1826b2351 xor edx, edx 
+0x1826b2353 mov rcx, rbx 
+0x1826b2356 call 0x1826b25a0 GameCore.HotUpdate.Battle.Logic.ExploreManager::get_MaxExposure
+0x1826b235b comiss xmm8, xmm6 
+0x1826b235f movd xmm0, eax 
+0x1826b2363 cvtdq2ps xmm0, xmm0 
+0x1826b2366 ja 0x1826b2372 
+0x1826b2368 comiss xmm6, xmm0 
+0x1826b236b jbe 0x1826b2375 
+0x1826b236d movaps xmm6, xmm0 
+0x1826b2370 jmp 0x1826b2375 
+0x1826b2372 xorps xmm6, xmm6 
+0x1826b2375 movss dword ptr [rbx + 0x34], xmm6 
+0x1826b237a xor r8d, r8d 
+0x1826b237d movaps xmm1, xmm9 
+0x1826b2381 mov rcx, rbx 
+0x1826b2384 call 0x1826b1e00 GameCore.HotUpdate.Battle.Logic.ExploreManager::UpdateExposureAlarm
+0x1826b2389 addss xmm9, dword ptr [rbx + 0x64] 
+0x1826b238f comiss xmm9, dword ptr [rip + 0x1fbbb55] 
+0x1826b2397 movss dword ptr [rbx + 0x64], xmm9 
+0x1826b239d jb 0x1826b23ac 
+0x1826b239f xor edx, edx 
+0x1826b23a1 mov dword ptr [rbx + 0x64], esi 
+0x1826b23a4 mov rcx, rbx 
+0x1826b23a7 call 0x1826aece0 GameCore.HotUpdate.Battle.Logic.ExploreManager::NotifyUI
+0x1826b23ac cmp byte ptr [rip + 0x38968dd], sil 
+0x1826b23b3 movss xmm6, dword ptr [rbx + 0x34] 
+0x1826b23b8 jne 0x1826b23cd 
+0x1826b23ba lea rcx, [rip + 0x34ec01f] 
+0x1826b23c1 call 0x18050a950 
+0x1826b23c6 mov byte ptr [rip + 0x38968c3], 1 
+0x1826b23cd mov rcx, qword ptr [rip + 0x34ec00c] 
+0x1826b23d4 mov edi, dword ptr [rbx + 0x38] 
+0x1826b23d7 call 0x182045330 GameCore.HotUpdate.BaseSingleton`1::get_Instance
+0x1826b23dc test rax, rax 
+0x1826b23df je 0x1826b2451 
+0x1826b23e1 mov rcx, qword ptr [rax + 0x158] 
+0x1826b23e8 test rcx, rcx 
+0x1826b23eb je 0x1826b23f6 
+0x1826b23ed xor edx, edx 
+0x1826b23ef call 0x1827b2270 GameCore.HotUpdate.Battle.Logic.ProficiencyManager::GetExploreMaxExposureBonus
+0x1826b23f4 mov esi, eax 
+0x1826b23f6 lea eax, [rdi + rsi] 
+0x1826b23f9 movd xmm0, eax 
+0x1826b23fd cvtdq2ps xmm0, xmm0 
+0x1826b2400 comiss xmm6, xmm0 
+0x1826b2403 jb 0x1826b240f 
+0x1826b2405 xor edx, edx 
+0x1826b2407 mov rcx, rbx 
+0x1826b240a call 0x1826af710 GameCore.HotUpdate.Battle.Logic.ExploreManager::OnExploreEnd
+0x1826b240f movaps xmm6, xmmword ptr [rsp + 0x80] 
+0x1826b2417 mov r14, qword ptr [rsp + 0xb8] 
+0x1826b241f mov rdi, qword ptr [rsp + 0xb0] 
+0x1826b2427 mov rbp, qword ptr [rsp + 0xa0] 
+0x1826b242f movaps xmm8, xmmword ptr [rsp + 0x60] 
+0x1826b2435 mov rsi, qword ptr [rsp + 0xa8] 
+0x1826b243d movaps xmm7, xmmword ptr [rsp + 0x70] 
+0x1826b2442 movaps xmm9, xmmword ptr [rsp + 0x50] 
+0x1826b2448 add rsp, 0x90 
+0x1826b244f pop rbx 
+0x1826b2450 ret  
+0x1826b2451 call 0x18050aba0 
+0x1826b2456 int3  
+0x1826b2457 int3  
+0x1826b2458 int3  
+0x1826b2459 int3  
+0x1826b245a int3  
+0x1826b245b int3  
+0x1826b245c int3  
+0x1826b245d int3  
+0x1826b245e int3  
+0x1826b245f int3  
+
+METHOD GameCore.HotUpdate.Battle.Logic.ExploreManager::AddExposure
+0x1826acfc0 mov qword ptr [rsp + 8], rbx 
+0x1826acfc5 push rdi 
+0x1826acfc6 sub rsp, 0x30 
+0x1826acfca cmp byte ptr [rip + 0x389bccf], 0 
+0x1826acfd1 mov edi, edx 
+0x1826acfd3 mov rbx, rcx 
+0x1826acfd6 jne 0x1826acfeb 
+0x1826acfd8 lea rcx, [rip + 0x3575069] 
+0x1826acfdf call 0x18050a950 
+0x1826acfe4 mov byte ptr [rip + 0x389bcb5], 1 
+0x1826acfeb cmp byte ptr [rbx + 0x31], 0 
+0x1826acfef jne 0x1826ad0c4 
+0x1826acff5 mov rcx, qword ptr [rip + 0x357504c] 
+0x1826acffc cmp dword ptr [rcx + 0xe4], 0 
+0x1826ad003 jne 0x1826ad00a 
+0x1826ad005 call 0x18050ac30 
+0x1826ad00a cmp byte ptr [rip + 0x389bca5], 0 
+0x1826ad011 jne 0x1826ad026 
+0x1826ad013 lea rcx, [rip + 0x357502e] 
+0x1826ad01a call 0x18050a950 
+0x1826ad01f mov byte ptr [rip + 0x389bc90], 1 
+0x1826ad026 mov rcx, qword ptr [rip + 0x357501b] 
+0x1826ad02d cmp dword ptr [rcx + 0xe4], 0 
+0x1826ad034 jne 0x1826ad03b 
+0x1826ad036 call 0x18050ac30 
+0x1826ad03b mov rax, qword ptr [rip + 0x3575006] 
+0x1826ad042 mov rcx, qword ptr [rax + 0xb8] 
+0x1826ad049 cmp byte ptr [rcx + 5], 0 
+0x1826ad04d jne 0x1826ad0c4 
+0x1826ad04f movaps xmmword ptr [rsp + 0x20], xmm6 
+0x1826ad054 movd xmm6, edi 
+0x1826ad058 xor edx, edx 
+0x1826ad05a cvtdq2ps xmm6, xmm6 
+0x1826ad05d mov rcx, rbx 
+0x1826ad060 addss xmm6, dword ptr [rbx + 0x34] 
+0x1826ad065 movss dword ptr [rbx + 0x34], xmm6 
+0x1826ad06a call 0x1826b25a0 GameCore.HotUpdate.Battle.Logic.ExploreManager::get_MaxExposure
+0x1826ad06f xorps xmm1, xmm1 
+0x1826ad072 comiss xmm1, xmm6 
+0x1826ad075 movd xmm0, eax 
+0x1826ad079 cvtdq2ps xmm0, xmm0 
+0x1826ad07c ja 0x1826ad088 
+0x1826ad07e comiss xmm6, xmm0 
+0x1826ad081 jbe 0x1826ad08b 
+0x1826ad083 movaps xmm6, xmm0 
+0x1826ad086 jmp 0x1826ad08b 
+0x1826ad088 xorps xmm6, xmm6 
+0x1826ad08b xor edx, edx 
+0x1826ad08d movss dword ptr [rbx + 0x34], xmm6 
+0x1826ad092 mov rcx, rbx 
+0x1826ad095 call 0x1826aece0 GameCore.HotUpdate.Battle.Logic.ExploreManager::NotifyUI
+0x1826ad09a movss xmm6, dword ptr [rbx + 0x34] 
+0x1826ad09f xor edx, edx 
+0x1826ad0a1 mov rcx, rbx 
+0x1826ad0a4 call 0x1826b25a0 GameCore.HotUpdate.Battle.Logic.ExploreManager::get_MaxExposure
+0x1826ad0a9 movd xmm0, eax 
+0x1826ad0ad cvtdq2ps xmm0, xmm0 
+0x1826ad0b0 comiss xmm6, xmm0 
+0x1826ad0b3 movaps xmm6, xmmword ptr [rsp + 0x20] 
+0x1826ad0b8 jb 0x1826ad0c4 
+0x1826ad0ba xor edx, edx 
+0x1826ad0bc mov rcx, rbx 
+0x1826ad0bf call 0x1826af710 GameCore.HotUpdate.Battle.Logic.ExploreManager::OnExploreEnd
+0x1826ad0c4 mov rbx, qword ptr [rsp + 0x40] 
+0x1826ad0c9 add rsp, 0x30 
+0x1826ad0cd pop rdi 
+0x1826ad0ce ret  
+0x1826ad0cf int3  

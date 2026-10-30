@@ -1,0 +1,6 @@
+﻿gold-restored=1000000
+move-before=On speed-before=2.0
+move-off=Off edit-enabled=False
+speed-set=2.0
+move-on=On speed-on=2.0
+move-restored=On speed-restored=2.0

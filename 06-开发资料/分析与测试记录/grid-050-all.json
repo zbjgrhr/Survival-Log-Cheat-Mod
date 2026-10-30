@@ -1,0 +1,160 @@
+[
+  {
+    "page": "ToolTable",
+    "size": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      {
+        "id": "backpack-grid",
+        "scroll": true,
+        "right": 656,
+        "bottom": 534.09375,
+        "left": 226,
+        "top": 188.5,
+        "ancestors": [
+          {
+            "name": "trainer-grid-scroll",
+            "w": 430,
+            "x": 226,
+            "position": "relative",
+            "transform": "none"
+          },
+          {
+            "name": "backpack-panel",
+            "w": 464,
+            "x": 209,
+            "position": "relative",
+            "transform": "none"
+          },
+          {
+            "name": "ui-container await-first-data",
+            "w": 862,
+            "x": 209,
+            "position": "relative",
+            "transform": "none"
+          }
+        ]
+      },
+      {
+        "id": "workbench-grid",
+        "scroll": true,
+        "right": 1052,
+        "bottom": 444.5,
+        "left": 716,
+        "top": 162.5,
+        "ancestors": [
+          {
+            "name": "trainer-grid-scroll",
+            "w": 336,
+            "x": 716,
+            "position": "relative",
+            "transform": "none"
+          },
+          {
+            "name": "workbench-section",
+            "w": 372,
+            "x": 698,
+            "position": "relative",
+            "transform": "none"
+          },
+          {
+            "name": "combined-panel no-notes",
+            "w": 374,
+            "x": 697,
+            "position": "relative",
+            "transform": "none"
+          },
+          {
+            "name": "ui-container await-first-data",
+            "w": 862,
+            "x": 209,
+            "position": "relative",
+            "transform": "none"
+          }
+        ]
+      }
+    ],
+    "errors": []
+  },
+  {
+    "page": "ToolTable",
+    "size": {
+      "width": 1024,
+      "height": 768
+    },
+    "checks": [
+      {
+        "id": "backpack-grid",
+        "scroll": true,
+        "right": 464,
+        "bottom": 581.125,
+        "left": 162,
+        "top": 212.5,
+        "ancestors": [
+          {
+            "name": "trainer-grid-scroll",
+            "w": 302,
+            "x": 162,
+            "position": "relative",
+            "transform": "none"
+          },
+          {
+            "name": "backpack-panel",
+            "w": 336,
+            "x": 145,
+            "position": "relative",
+            "transform": "none"
+          },
+          {
+            "name": "ui-container await-first-data",
+            "w": 734,
+            "x": 145,
+            "position": "relative",
+            "transform": "none"
+          }
+        ]
+      },
+      {
+        "id": "workbench-grid",
+        "scroll": true,
+        "right": 860,
+        "bottom": 468.5,
+        "left": 524,
+        "top": 186.5,
+        "ancestors": [
+          {
+            "name": "trainer-grid-scroll",
+            "w": 336,
+            "x": 524,
+            "position": "relative",
+            "transform": "none"
+          },
+          {
+            "name": "workbench-section",
+            "w": 372,
+            "x": 506,
+            "position": "relative",
+            "transform": "none"
+          },
+          {
+            "name": "combined-panel no-notes",
+            "w": 374,
+            "x": 505,
+            "position": "relative",
+            "transform": "none"
+          },
+          {
+            "name": "ui-container await-first-data",
+            "w": 734,
+            "x": 145,
+            "position": "relative",
+            "transform": "none"
+          }
+        ]
+      }
+    ],
+    "errors": []
+  }
+]

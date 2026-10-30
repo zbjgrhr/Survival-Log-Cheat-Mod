@@ -1,0 +1,1 @@
+bounds=530,270,646,479 print=True
