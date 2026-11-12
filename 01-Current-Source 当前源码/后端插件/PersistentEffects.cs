@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
@@ -17,7 +17,7 @@ namespace SurvivalLogTrainer
             "InfiniteStamina", "InfiniteSatiety", "InfiniteMorale", "InfiniteShelfLife",
             "InfiniteUses", "InfiniteDurability", "InfiniteGeneration", "InfiniteBattery",
             "InfiniteGeneratorFuel", "InfiniteCookingFuel", "InstantPlants", "ZeroTravelTime",
-            "NoExploreExposure"
+            "NoExploreExposure", "AnchorInteractionEnabled"
         };
 
         internal static string SerializeExtraSettings()

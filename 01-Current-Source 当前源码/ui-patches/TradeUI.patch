@@ -1,0 +1,123 @@
+--- a/TradeUI.html
++++ b/TradeUI.html
+@@ -1117,6 +1117,7 @@
+                   }, null, 4 /* STYLE */)
+                 ], 2 /* CLASS */)
+               ], 4 /* STYLE */),
++              _createElementVNode("div", { class: "trainer-grid-scroll", style: {display: _ctx.bag.isRack ? "none" : ""} }, [
+               _withDirectives(_createElementVNode("div", {
+                 class: _normalizeClass(["grid-container", {'is-frozen': _ctx.bag.isFridge}]),
+                 id: "tradeBagGrid",
+@@ -1213,7 +1214,7 @@
+                   : _createCommentVNode("v-if", true)
+               ], 6 /* CLASS, STYLE */), [
+                 [_vShow, !_ctx.bag.isRack]
+-              ]),
++              ])]),
+               _withDirectives(_createElementVNode("div", {
+                 class: _normalizeClass(["rack-view", {'drop-on': _ctx.bag.isRack && _ctx.dragState.dragging && _ctx.dragState.moved && _ctx.dragState.hoverGrid==='bag'}]),
+                 ref: _ctx.setRackEl,
+@@ -1253,6 +1254,7 @@
+                   }, null, 4 /* STYLE */)
+                 ])
+               ]),
++              _createElementVNode("div", { class: "trainer-grid-scroll" }, [
+               _createElementVNode("div", {
+                 class: "grid-container",
+                 ref: _ctx.setDroneGC,
+@@ -1370,7 +1372,7 @@
+                 (_ctx.drone.items.length===0 && !_ctx.lackCells.length)
+                   ? (_openBlock(), _createElementBlock("div", _hoisted_124, _toDisplayString(_ctx.drone.hint), 1 /* TEXT */))
+                   : _createCommentVNode("v-if", true)
+-              ], 4 /* STYLE */),
++              ], 4 /* STYLE */)]),
+               _createCommentVNode(" 货仓里这批东西折算成三维各多少。🚨 两点 2026-09-11 改：\n             ① 去掉 isSupply 限制 —— 交易那条路给出物同样进对方五维，凭什么不给看；\n             ② 色块图标换成文字标签 —— 「不知道哪一条对应什么维度」是用户对色块语言的原话，\n                这里复用与水位条同一组词条（Cat_1/10/9），三处叫法从此一致。 "),
+               (_ctx.drone.preview)
+                 ? (_openBlock(), _createElementBlock("div", _hoisted_125, [
+@@ -2715,6 +2717,17 @@
+   .dtip-rw{position:relative;padding-left:10px;color:#f0d68a;}
+   .dtip-rw::before{content:"";position:absolute;left:1px;top:9px;width:4px;height:4px;border-radius:50%;background:#d9b44a;}
+ </style>
++<style id="trainer-trade-scroll-fix">
++.trainer-grid-scroll {overflow:auto; max-width:38vw; max-height:48vh; min-width:0; min-height:0; flex:0 0 auto; position:relative; overscroll-behavior:contain;}
++.col.mid .trainer-grid-scroll {max-width:25vw;}
++.trainer-grid-scroll > .grid-container {flex-shrink:0;}
++.col {min-width:0;}
++.col.right {flex-shrink:0;}
++.rack-view {max-width:38vw;max-height:48vh;}
++.trainer-grid-scroll::-webkit-scrollbar {display:block;width:12px;height:12px;background:#172429;}
++.trainer-grid-scroll::-webkit-scrollbar-thumb {background:#799d92;border:2px solid #172429;border-radius:6px;}
++.trainer-grid-scroll::-webkit-scrollbar-corner {background:#172429;}
++</style>
+ </head>
+ <body>
+ <div id="app">
+@@ -2886,7 +2899,7 @@
+           </div>
+           <div class="bar" :class="{over: bagOver && !bag.isContainer}"><i :style="{width: bagBarPct + '%'}"></i></div>
+         </div>
+-        <div class="grid-container" id="tradeBagGrid" :ref="setBagGC" v-show="!bag.isRack" :class="{'is-frozen': bag.isFridge}" :style="bagGridStyle">
++        <div class="trainer-grid-scroll" v-show="!bag.isRack"><div class="grid-container" id="tradeBagGrid" :ref="setBagGC" v-show="!bag.isRack" :class="{'is-frozen': bag.isFridge}" :style="bagGridStyle">
+           <div class="grid-bg" :style="gridBgStyle(bag)"><div class="slot" v-for="i in bag.cols*bag.rows" :key="'bs'+i"></div></div>
+           <div class="item" v-for="it in (bag.isRack ? [] : bag.items)" :key="'bi'+it.id"
+                :class="[rarityClass(it.r), qualityClass(it), {dragging: dragState.dragging && dragState.fromGrid==='bag' && dragState.item.id===it.id, locked: !canDrag('bag'), expired: it.isExpired, 'kin-hint': kinHintIds !== null && kinHintIds.has(it.id)}]"
+@@ -2912,7 +2925,7 @@
+           </div>
+           <div class="drop-hl" v-if="dropHl('bag')" :class="dropHl('bag').ok?'valid':'invalid'" :style="dropHlStyle('bag')"></div>
+         </div>
+-        <div class="rack-view" v-show="bag.isRack" :ref="setRackEl" :style="rackViewStyle"
++        </div><div class="rack-view" v-show="bag.isRack" :ref="setRackEl" :style="rackViewStyle"
+              :class="{'drop-on': bag.isRack && dragState.dragging && dragState.moved && dragState.hoverGrid==='bag'}"></div>
+         <div class="bag-toolbar">
+           <button class="sort-btn" :disabled="foot.phase!=='trade'" :class="{'rack-hidden': bag.isRack}" @click="onSortBag">
+@@ -2928,7 +2941,7 @@
+           <div class="bar-label"><span>{{ localText.cargoLabel || '载货' }}</span><b>{{ drone.usedCells }} / {{ drone.cols*drone.rows }} {{ localText.cellSuffix || '格' }}</b></div>
+           <div class="bar"><i :style="{width: droneCellPct + '%'}"></i></div>
+         </div>
+-        <div class="grid-container" :ref="setDroneGC" :style="gridStyle(drone)">
++        <div class="trainer-grid-scroll"><div class="grid-container" :ref="setDroneGC" :style="gridStyle(drone)">
+           <div class="grid-bg" :style="gridBgStyle(drone)"><div class="slot" v-for="i in drone.cols*drone.rows" :key="'ds'+i"></div></div>
+           <!-- 派送：选中目标这一车装完后还缺的东西，一件一格画在空格里（不挡拖放） -->
+           <div class="lack" v-for="g in lackCells" :key="g.k" :style="g.style"><img v-if="g.i" :src="g.i" loading="lazy" decoding="async" draggable="false"><span v-else class="lack-q">?</span><span class="lack-n" v-if="g.label">{{ g.label }}</span></div>
+@@ -2956,7 +2969,7 @@
+           </div>
+           <div class="drop-hl" v-if="dropHl('drone')" :class="dropHl('drone').ok?'valid':'invalid'" :style="dropHlStyle('drone')"></div>
+           <div class="grid-empty-hint" v-if="drone.items.length===0 && !lackCells.length">{{ drone.hint }}</div>
+-        </div>
++        </div></div>
+         <!-- 货仓里这批东西折算成三维各多少。🚨 两点 2026-09-11 改：
+              ① 去掉 isSupply 限制 —— 交易那条路给出物同样进对方五维，凭什么不给看；
+              ② 色块图标换成文字标签 —— 「不知道哪一条对应什么维度」是用户对色块语言的原话，
+@@ -4205,11 +4218,17 @@
+       const runHover = () => {
+         if (!dragState.dragging || !_latestPos) return;
+         const x=_latestPos.x, y=_latestPos.y;
+-        if (!_gridRects || !_occCache) buildDragCaches();
++        buildDragCaches(); // Scroll changes the grid origin while a drag is active.
+         const it = dragState.item;
+         let hover=null;
+         for (const grid of ['bag','drone']) {
+           const rect=_gridRects[grid]; if(!rect) continue;
++          const viewport = gridEls[grid] && gridEls[grid].closest('.trainer-grid-scroll');
++          if (viewport && !(grid === 'bag' && bag.isRack)) {
++            const clip = viewport.getBoundingClientRect();
++            if (x < clip.left || x >= clip.left + viewport.clientWidth * (viewportZoom.value || 1) ||
++                y < clip.top || y >= clip.top + viewport.clientHeight * (viewportZoom.value || 1)) continue;
++          }
+           // 横排拖出来的只认左栏格子：货舱的放入是本次给出清单，不是真的挪进某个容器；材料架没有格子可落
+           if (dragState.fromGrid === 'ground' && (grid !== 'bag' || bag.isRack)) continue;
+           if (x>=rect.left&&x<=rect.right&&y>=rect.top&&y<=rect.bottom) {
+@@ -4415,7 +4434,12 @@
+       onMounted(() => {
+         core.clickThrough.start();
+         core.notifyReady();
+-        window.addEventListener('resize', applyViewportFit);
++        window.addEventListener('resize', applySizeLock);
++        document.addEventListener('scroll', () => { invalidateDragCaches(); _hoverDirty=true; }, true);
++        document.addEventListener('wheel', e => {
++          const v=e.target.closest && e.target.closest('.trainer-grid-scroll');
++          if(v && e.shiftKey) { v.scrollLeft+=e.deltaY || e.deltaX; e.preventDefault(); }
++        }, {passive:false});
+         // 放在 applyViewportFit 的 resize 监听之后建：窗口缩放时先定面板缩放、再摆横排
+         groundDock = createGroundDock({
+           send: (ev, payload) => core.UnitySendEvent(ev, payload),

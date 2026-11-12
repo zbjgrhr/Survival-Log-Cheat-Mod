@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -75,9 +75,22 @@ internal sealed class TrainerPanel : Form
     private DateTime lastAction = DateTime.MinValue;
     private DateTime lastValidStatus = DateTime.MinValue;
     private string pendingAction = "";
-
-    public TrainerPanel()
+    private readonly TextBox anchorName = new TextBox();
+    private readonly ListBox anchorList = new ListBox();
+    private readonly NumericUpDown anchorWidth = new NumericUpDown();
+    private readonly NumericUpDown anchorHeight = new NumericUpDown();
+    private string lastAnchors = "";
+    private sealed class AnchorChoice
     {
+        internal string Id, Caption;
+        public override string ToString() { return Caption; }
+    }
+
+    private readonly bool offlineTest;
+    public TrainerPanel() : this(false) { }
+    internal TrainerPanel(bool offline)
+    {
+        offlineTest = offline;
         Text = "末日生存日志作弊器";
         ClientSize = new Size(500, 453);
         MinimumSize = new Size(516, 492);
@@ -103,10 +116,81 @@ internal sealed class TrainerPanel : Form
         tabs.Font = new Font("Microsoft YaHei UI", 9F);
         Controls.Add(tabs);
         var resources = NewTab("资源");
-        var player = NewTab("人物 / 背包");
-        var storage = NewTab("储物工具");
-        var items = NewTab("物品 / 设施");
-        var world = NewTab("时间 / 解锁");
+        var player = NewTab("人物背包");
+        var storage = NewTab("储物");
+        var items = NewTab("物品设施");
+        var world = NewTab("时间解锁");
+        var shop = NewTab("商店");
+        var anchors = NewTab("摆设储物");
+        NewLabel("独立格数：宽高各 1–50，按存档保留；修改前关闭游戏内背包。", 12, 6, 420, 22, 8F, muted, anchors);
+        anchorName.SetBounds(12, 31, 252, 27);
+        anchorName.MaxLength = 24;
+        anchorName.Text = "摆设储物点";
+        anchorName.BackColor = surface;
+        anchorName.ForeColor = ink;
+        anchors.Controls.Add(anchorName);
+        NewButton("在此创建（试用）", 274, 30, 158, 29, delegate {
+            string name = anchorName.Text.Trim();
+            if (name.Length == 0) { result.Text = "请先填写储物点名称"; return; }
+            if (MessageBox.Show("在角色当前站位创建 " + anchorWidth.Value + "×" + anchorHeight.Value + " 格独立储物点。物品随游戏保存，容量按存档保留。继续创建？", "摆设储物点", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                SendAction("ANCHOR_CREATE", Convert.ToBase64String(Encoding.UTF8.GetBytes(name)) + "," + anchorWidth.Value + "," + anchorHeight.Value, "创建储物点");
+        }, anchors);
+        NewLabel("格数", 12, 67, 38, 24, 9F, ink, anchors);
+        anchorWidth.Minimum = anchorHeight.Minimum = 1;
+        anchorWidth.Maximum = anchorHeight.Maximum = 50;
+        anchorWidth.Value = 5; anchorHeight.Value = 3;
+        anchorWidth.SetBounds(54, 65, 64, 26); anchorHeight.SetBounds(140, 65, 64, 26);
+        anchors.Controls.Add(anchorWidth); anchors.Controls.Add(anchorHeight);
+        NewLabel("×", 122, 67, 18, 24, 9F, ink, anchors);
+        NewButton("应用到选中点", 216, 64, 116, 29, delegate {
+            var selected = anchorList.SelectedItem as AnchorChoice;
+            if (selected == null) { result.Text = "请先刷新列表并选择储物点"; return; }
+            SendAction("ANCHOR_SIZE", selected.Id + "," + anchorWidth.Value + "," + anchorHeight.Value, "修改选中储物点格数");
+        }, anchors);
+        NewButton("删除选中点", 340, 64, 92, 29, delegate {
+            var selected = anchorList.SelectedItem as AnchorChoice;
+            if (selected == null) { result.Text = "请先刷新列表并选择储物点"; return; }
+            if (MessageBox.Show("删除储物点：" + selected.Caption + "\n\n请先取出全部物品并保存游戏。只删除新增储物点，原家具不变。确认删除？", "删除选中点", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                SendAction("ANCHOR_DELETE", selected.Id, "删除选中储物点");
+        }, anchors);
+        anchorList.SetBounds(12, 100, 420, 43);
+        anchorList.IntegralHeight = false;
+        anchorList.HorizontalScrollbar = true;
+        anchorList.BackColor = surface;
+        anchorList.ForeColor = ink;
+        anchors.Controls.Add(anchorList);
+        anchorList.SelectedIndexChanged += delegate {
+            var selected = anchorList.SelectedItem as AnchorChoice;
+            if (selected == null) return;
+            var match = System.Text.RegularExpressions.Regex.Match(selected.Caption, @" — (\d+)×(\d+)格");
+            int w, h;
+            if (match.Success && int.TryParse(match.Groups[1].Value, out w) && int.TryParse(match.Groups[2].Value, out h) && w >= 1 && w <= 50 && h >= 1 && h <= 50)
+            { anchorWidth.Value = w; anchorHeight.Value = h; }
+        };
+        NewButton("检查样板", 12, 150, 96, 29, delegate { SendAction("ANCHOR_CHECK", "0", "检查家中储物柜样板"); }, anchors);
+        NewButton("附近 6 米", 116, 150, 96, 29, delegate { SendAction("ANCHOR_LIST", "nearby", "查看附近储物点"); }, anchors);
+        NewButton("全部 / 找回", 220, 150, 100, 29, delegate { SendAction("ANCHOR_LIST", "all", "查看本存档储物点"); }, anchors);
+        NewButton("打开储物点", 328, 150, 104, 29, delegate {
+            var selected = anchorList.SelectedItem as AnchorChoice;
+            if (selected == null) { result.Text = "请先刷新列表并选择储物点"; return; }
+            SendAction("ANCHOR_OPEN", selected.Id, "打开储物点");
+        }, anchors);
+        AddToggle(anchors, "游戏内靠近储物点按 F6 打开", "anchorinteraction", 12, 184, 420);
+
+        string buy100Path = Path.Combine(GameDirectory, @"SurvivalLog_Data\StreamingAssets\WebUI\UI\ShopUI\trainer-buy100.js");
+        var buy100 = new CheckBox();
+        buy100.Text = "开局商店显示“买100个”";
+        buy100.ForeColor = ink;
+        buy100.SetBounds(12, 16, 420, 34);
+        buy100.Checked = File.Exists(buy100Path) && File.ReadAllText(buy100Path).Contains("= true");
+        buy100.CheckedChanged += delegate {
+            try {
+                File.WriteAllText(buy100Path, "window.trainerBuy100Enabled = " + (buy100.Checked ? "true" : "false") + ";", Encoding.UTF8);
+                result.Text = "商店批量购买已" + (buy100.Checked ? "开启" : "关闭") + "；重新打开商店生效。";
+            } catch (Exception ex) { MessageBox.Show(ex.Message, "商店设置失败"); }
+        };
+        shop.Controls.Add(buy100);
+        NewLabel("重新打开商店后生效。批量加入购物车，仍需手动结算。此开关为本机全局设置。", 12, 63, 420, 60, 9F, muted, shop);
 
         goldButton = NewButton("金币 +100000", 12, 15, 204, 38, delegate { SendAction("ADD_GOLD", "100000", "金币 +100000"); }, resources);
         faithButton = NewButton("信念点 +6", 228, 15, 204, 38, delegate { SendAction("ADD_FAITH", "6", "信念点 +6"); }, resources);
@@ -189,10 +273,10 @@ internal sealed class TrainerPanel : Form
 
         timer.Interval = 600;
         timer.Tick += delegate { Poll(); };
-        timer.Start();
-        FormClosing += delegate { if (connected) TrySend("RESET", "0"); };
+        if (!offlineTest) timer.Start();
+        FormClosing += delegate { if (!offlineTest && connected) TrySend("RESET", "0"); };
         SetActionsEnabled(false);
-        Poll();
+        if (!offlineTest) Poll();
     }
 
     private TabPage NewTab(string title)
@@ -343,6 +427,7 @@ internal sealed class TrainerPanel : Form
                 sequence = parsedSequence;
                 pendingAction = "";
                 lastPing = DateTime.MinValue;
+                anchorList.Items.Clear(); lastAnchors = "";
             }
             sequence = Math.Max(sequence, parsedSequence);
             connected = Get(values, "ready") == "1";
@@ -355,6 +440,7 @@ internal sealed class TrainerPanel : Form
                 connection.ForeColor = Color.FromArgb(238, 185, 113);
             }
             SetActionsEnabled(connected);
+            UpdateAnchorList(Get(values, "anchors"));
             stats.Text = "金币 " + FormatNumber(Get(values, "gold")) + "    信念点 " + FormatNumber(Get(values, "faith")) + "    生存点 " + FormatNumber(Get(values, "survival"));
             string move = Get(values, "move", "1");
             if (move == "1") speedState.Text = "移速倍率：1x（关闭）";
@@ -407,6 +493,7 @@ internal sealed class TrainerPanel : Form
 
     private void Disconnect(string message)
     {
+        anchorList.Items.Clear(); lastAnchors = "";
         connected = false;
         connection.Text = "○ " + message;
         connection.ForeColor = muted;
@@ -436,8 +523,40 @@ internal sealed class TrainerPanel : Form
         result.Text = "状态：正在执行 " + description + "…";
     }
 
+    private void UpdateAnchorList(string encoded)
+    {
+        if (encoded == lastAnchors) return;
+        var choices = new List<AnchorChoice>();
+        if (encoded.Length > 0)
+        {
+            string rows = Encoding.UTF8.GetString(Convert.FromBase64String(encoded));
+            foreach (string row in rows.Split('\n'))
+            {
+                if (row.Length == 0) continue;
+                string[] p = row.Split('\t'); Guid id;
+                if (p.Length != 2 || !Guid.TryParseExact(p[0], "N", out id)) continue;
+                choices.Add(new AnchorChoice { Id = id.ToString("N"), Caption = Encoding.UTF8.GetString(Convert.FromBase64String(p[1])) });
+            }
+        }
+        string selected = (anchorList.SelectedItem as AnchorChoice) == null ? "" : ((AnchorChoice)anchorList.SelectedItem).Id;
+        anchorList.BeginUpdate();
+        try
+        {
+            anchorList.Items.Clear();
+            foreach (var choice in choices)
+            {
+                int index = anchorList.Items.Add(choice);
+                if (choice.Id == selected) anchorList.SelectedIndex = index;
+            }
+            if (anchorList.SelectedIndex < 0 && anchorList.Items.Count > 0) anchorList.SelectedIndex = 0;
+        }
+        finally { anchorList.EndUpdate(); }
+        lastAnchors = encoded;
+    }
+
     private bool TrySend(string verb, string value)
     {
+        if (offlineTest) throw new InvalidOperationException("Offline test cannot send game commands");
         long nextSequence = sequence + 1;
         string line = session + "|" + epoch.ToString(CultureInfo.InvariantCulture) + "|" +
             nextSequence.ToString(CultureInfo.InvariantCulture) + "|" + verb + "|" + value;
@@ -458,3 +577,6 @@ internal sealed class TrainerPanel : Form
         return false;
     }
 }
+
+
+

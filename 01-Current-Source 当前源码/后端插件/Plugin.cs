@@ -16,7 +16,7 @@ using UnityEngine;
 
 namespace SurvivalLogTrainer
 {
-    [BepInPlugin("local.survivallog.safe-trainer", "Survival Log Safe Trainer", "0.5.1")]
+    [BepInPlugin("local.survivallog.safe-trainer", "Survival Log Safe Trainer", "0.5.11")]
     [BepInProcess("SurvivalLog.exe")]
     public sealed partial class Plugin : BasePlugin
     {
@@ -72,6 +72,7 @@ namespace SurvivalLogTrainer
             Instance = this;
             Directory.CreateDirectory(BridgeDirectory);
             Directory.CreateDirectory(PersistentDirectory);
+            EnsureInventoryScroll();
             try
             {
                 var harmony = new Harmony("local.survivallog.safe-trainer");
@@ -89,6 +90,10 @@ namespace SurvivalLogTrainer
                 Patch(harmony, typeof(SkillExpPatch));
                 Patch(harmony, typeof(TimeSaveGuardPatch));
                 Patch(harmony, typeof(StorageBagConfigPatch));
+                Patch(harmony, typeof(AnchorConfigPatch));
+                Patch(harmony, typeof(AnchorCapacityOwnerPatch));
+                Patch(harmony, typeof(AnchorCapacityLoadPatch));
+                Patch(harmony, typeof(ItemLoadSaveGuardPatch));
                 Patch(harmony, typeof(PlayerBagInitPatch));
                 Patch(harmony, typeof(LeadingRoleCreationPatch));
                 Patch(harmony, typeof(TravelTimePatch));
@@ -103,6 +108,21 @@ namespace SurvivalLogTrainer
             {
                 Log.LogError("Safe trainer initialization failed: " + ex);
                 throw;
+            }
+        }
+
+        private static bool EnsureInventoryScroll()
+        {
+            try
+            {
+                InventoryScrollPatch.Ensure(Paths.GameRootPath, Path.Combine(BridgeDirectory, "ui-backups"));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LastResult = "滚动界面检查失败，未修改格数：" + ex.Message;
+                Instance.Log.LogError(LastResult);
+                return false;
             }
         }
 
@@ -158,6 +178,7 @@ namespace SurvivalLogTrainer
             Epoch++;
             LastResult = "运行时效果已重置：" + reason;
             NoExploreExposure = false;
+            AnchorInteractionEnabled = false;
             PersistAllSettings = false;
             if (savedEffects != null) LoadExtraSettings(savedEffects, true);
         }
@@ -268,8 +289,8 @@ namespace SurvivalLogTrainer
 
                 PendingUnconfiguredGeometryRestore = false;
 
-                bool validBag = bagWidth >= 1 && bagHeight >= 1 && bagWidth <= 50 && bagHeight <= 50 && (long)bagWidth * bagHeight <= 1000;
-                bool validStorage = storageWidth >= 1 && storageHeight >= 1 && storageWidth <= 50 && storageHeight <= 50 && (long)storageWidth * storageHeight <= 1000;
+                bool validBag = bagWidth >= 1 && bagHeight >= 1 && bagWidth <= 50 && bagHeight <= 50 && (long)bagWidth * bagHeight <= 2500;
+                bool validStorage = storageWidth >= 1 && storageHeight >= 1 && storageWidth <= 50 && storageHeight <= 50 && (long)storageWidth * storageHeight <= 2500;
                 BagWidth = validBag ? bagWidth : 0;
                 BagHeight = validBag ? bagHeight : 0;
                 StorageWidth = validStorage ? storageWidth : 0;
@@ -432,7 +453,7 @@ namespace SurvivalLogTrainer
             string name = ((string)config.Name ?? "") + " " + ((string)config.Name_Local ?? "");
             string lower = name.ToLowerInvariant();
             if (lower.Contains("背包") || lower.Contains("backpack") || lower.Contains("player bag")) return false;
-            string[] keywords = { "收纳", "置物", "储物", "冰箱", "冰柜", "冷柜", "货架", "柜子", "柜", "shelf", "rack", "fridge", "freezer", "refrigerator", "cabinet", "storage", "chest", "locker", "cooler" };
+            string[] keywords = { "玄关台", "玄關台", "entryway table", "console table", "收纳", "置物", "储物", "冰箱", "冰柜", "冷柜", "货架", "柜子", "柜", "shelf", "rack", "fridge", "freezer", "refrigerator", "cabinet", "storage", "chest", "locker", "cooler" };
             foreach (string keyword in keywords) if (lower.Contains(keyword)) return true;
             return false;
         }
@@ -595,6 +616,12 @@ namespace SurvivalLogTrainer
             int amount;
             switch (verb)
             {
+                case "ANCHOR_CREATE":
+                case "ANCHOR_SIZE":
+                case "ANCHOR_DELETE":
+                case "ANCHOR_CHECK":
+                case "ANCHOR_LIST":
+                case "ANCHOR_OPEN": LastResult = RunAnchorCommand(verb, parts[4]); break;
                 case "RESTORE_REGIONS": LastResult = RestoreRegions(); break;
                 case "REFILL_REGIONS": LastResult = RefillRegions(); break;
                 case "ADD_GOLD":
@@ -662,8 +689,9 @@ namespace SurvivalLogTrainer
                 case "BAG_SIZE":
                     var dimensions = parts[4].ToLowerInvariant().Split('x');
                     if (dimensions.Length != 2 || !int.TryParse(dimensions[0], out int width) || !int.TryParse(dimensions[1], out int height) ||
-                        width < 1 || height < 1 || width > 50 || height > 50 || (long)width * height > 1000)
-                    { LastResult = "背包尺寸需为正整数，且不超过 50×50、总格数 1000"; return; }
+                        width < 1 || height < 1 || width > 50 || height > 50 || (long)width * height > 2500)
+                    { LastResult = "背包尺寸需为正整数，且不超过 50×50、总格数 2500"; return; }
+                    if (!EnsureInventoryScroll()) return;
                     if (!ApplyBagSize(leader, width, height)) { LastResult = "背包配置未就绪，尺寸未更改"; return; }
                     BagHookCalls = 0;
                     if (PersistStorageSettings) SavePersistentSettings();
@@ -674,8 +702,9 @@ namespace SurvivalLogTrainer
                 case "STORAGE_SIZE":
                     var storageDimensions = parts[4].ToLowerInvariant().Split('x');
                     if (storageDimensions.Length != 2 || !int.TryParse(storageDimensions[0], out int storageWidth) || !int.TryParse(storageDimensions[1], out int storageHeight) ||
-                        storageWidth < 1 || storageHeight < 1 || storageWidth > 50 || storageHeight > 50 || (long)storageWidth * storageHeight > 1000)
-                    { LastResult = "储物尺寸需为正整数，且不超过 50×50、总格数 1000"; return; }
+                        storageWidth < 1 || storageHeight < 1 || storageWidth > 50 || storageHeight > 50 || (long)storageWidth * storageHeight > 2500)
+                    { LastResult = "储物尺寸需为正整数，且不超过 50×50、总格数 2500"; return; }
+                    if (!EnsureInventoryScroll()) return;
                     StorageWidth = storageWidth;
                     StorageHeight = storageHeight;
                     ReapplyStorageConfigs();
@@ -697,6 +726,7 @@ namespace SurvivalLogTrainer
                     switch (parts[4].Substring(2))
                     {
                         case "noexposure": NoExploreExposure = enabled; break;
+                        case "anchorinteraction": if (enabled) CheckAnchorBuild(); AnchorInteractionEnabled = enabled; break;
                         case "persistall":
                             if (enabled)
                             {
@@ -1004,6 +1034,8 @@ namespace SurvivalLogTrainer
                 if (world?._SurvivalResultsManager != null) survival = world._SurvivalResultsManager.GetSurvivalPoint();
             }
             string status = "session=" + Session + "\n" +
+                "anchorinteraction=" + B(AnchorInteractionEnabled) + "\n" +
+                "anchors=" + (leader != null && AnchorSnapshotEpoch == Epoch && AnchorSnapshotSave == CurrentPersistentSaveId ? AnchorSnapshot : "") + "\n" +
                 "pid=" + Process.GetCurrentProcess().Id + "\n" +
                 "epoch=" + Epoch + "\n" +
                 "ready=" + (leader != null ? "1" : "0") + "\n" +
@@ -1045,7 +1077,8 @@ namespace SurvivalLogTrainer
     public sealed class TrainerLoop : MonoBehaviour
     {
         public TrainerLoop(IntPtr pointer) : base(pointer) { }
-        private void Update() { Plugin.Tick(); }
+        private void Update() { Plugin.Tick(); Plugin.TickAnchorInteraction(); }
+        private void OnGUI() { Plugin.DrawAnchorInteraction(); }
     }
 
     [HarmonyPatch(typeof(AttributeComponent), "GetTotalValue_Float", new[] { typeof(AttrName) })]
@@ -1076,6 +1109,7 @@ namespace SurvivalLogTrainer
         [HarmonyPatch(typeof(AgentManager), "StartBattle")]
         private static void OnStartBattle(GameSaveData gameSave)
         {
+            Plugin.ClearAnchorOwners();
             Plugin.ResetRuntime("进入场景", true);
             string saveId = gameSave == null ? "" : (string)gameSave.FileName;
             Plugin.LoadPersistentSettings(null, true, saveId);
@@ -1247,6 +1281,7 @@ namespace SurvivalLogTrainer
     {
         private static void Postfix(Config_Bag __result)
         {
+            if (__result != null && Plugin.IsAnchorBag(__result.ID)) return;
             try
             {
                 Plugin.ApplyPrimedPlayerBagConfig(__result);
@@ -1335,3 +1370,6 @@ namespace SurvivalLogTrainer
         }
     }
 }
+
+
+

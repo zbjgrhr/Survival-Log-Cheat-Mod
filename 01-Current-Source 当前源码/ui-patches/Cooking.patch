@@ -1,0 +1,28 @@
+--- a/Cooking.html
++++ b/Cooking.html
+@@ -903,6 +903,15 @@
+         html.quality-low .click-to-close { animation: none; }
+         html.quality-low .cook-guide-click-hint { animation: none; }
+     </style>
++<style id="trainer-cooking-layout-fix">
++.cooking-system { max-width:calc(100vw - 48px); max-height:calc(100vh - 48px); min-height:0; overflow:auto; box-sizing:border-box; }
++.cooking-system > .panel { flex-shrink:0; min-width:0; }
++.cooking-system > .panel:first-child { width:min(38vw,640px); box-sizing:border-box; }
++.cooking-system .bag-tabs { max-width:100%; box-sizing:border-box; }
++.cooking-system .trainer-grid-scroll { max-width:100%!important; flex-shrink:0; }
++.cooking-system::-webkit-scrollbar { width:12px; height:12px; }
++.cooking-system::-webkit-scrollbar-thumb { background:#7c9f95; border-radius:6px; }
++</style>
+ </head>
+ <body>
+ 
+@@ -1921,7 +1930,8 @@
+         if (!DOM.bagTabs) return;
+         var grid = document.getElementById('backpackGrid');
+         if (!grid) { updateTabScrollButtons(); return; }
+-        var w = Math.max(bagLock.width(), grid.offsetWidth);
++        var viewport = grid.closest(".trainer-grid-scroll");
++        var w = viewport ? viewport.clientWidth : Math.min(grid.offsetWidth, window.innerWidth * 0.38);
+         if (w > 0) DOM.bagTabs.style.width = Math.floor(w * 15 / 16) + 'px';
+         updateTabScrollButtons();
+     }

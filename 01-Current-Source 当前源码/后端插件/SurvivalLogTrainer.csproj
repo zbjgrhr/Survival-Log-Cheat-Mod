@@ -4,18 +4,24 @@
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
     <AssemblyName>SurvivalLogTrainer</AssemblyName>
-    <Version>0.5.1</Version>
+    <Version>0.5.11</Version>
     <GameDir>C:\tool\steam\steamapps\common\Survival Log</GameDir>
   </PropertyGroup>
   <ItemGroup>
+    <EmbeddedResource Include="InventoryScroll.patch" />
     <_GameRef Include="$(GameDir)\BepInEx\core\*.dll" />
     <_GameRef Include="$(GameDir)\BepInEx\interop\HotUpdate.dll" />
     <_GameRef Include="$(GameDir)\BepInEx\interop\Il2Cppmscorlib.dll" />
     <_GameRef Include="$(GameDir)\BepInEx\interop\Il2CppSystem.dll" />
     <_GameRef Include="$(GameDir)\BepInEx\interop\UnityEngine.CoreModule.dll" />
+    <_GameRef Include="$(GameDir)\BepInEx\interop\UnityEngine.IMGUIModule.dll" />
+    <_GameRef Include="$(GameDir)\BepInEx\interop\UnityEngine.InputLegacyModule.dll" />
+    <_GameRef Include="$(GameDir)\BepInEx\interop\UnityEngine.TextRenderingModule.dll" />
     <Reference Include="@(_GameRef)">
       <HintPath>%(FullPath)</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
 </Project>
+
+
