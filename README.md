@@ -49,7 +49,7 @@ try {
 ## Source layout
 
 - [Current source](01-Current-Source%20当前源码) contains the C# plug-in, WinForms panel, and interface materials. The plug-in applies its embedded backpack scrolling patch when the target HTML matches.
-- [Trade and cooking UI patches](01-Current-Source%20当前源码/ui-patches) contain the optional scrolling and layout changes. They are separate from the plug-in. Verify each patch against a copy of the matching game HTML before applying it.
+- [Optional game UI patches](01-Current-Source%20当前源码/ui-patches) cover trade, cooking, workbench, shared inventory scrolling, and the starting shop. Verify each patch against a copy of the matching game file before applying it. For the optional “Buy 100” control, apply the shop patch and place `trainer-buy100.js` beside the game’s `ShopUI.html`. Enable it in the panel and reopen the shop. The button adds items to the cart for manual checkout.
 - The numbered archive directories retain earlier builds, design materials, and development records. Use the version in the current C# project when building the plug-in.
 
 Developed by **Introvert Arcade**.

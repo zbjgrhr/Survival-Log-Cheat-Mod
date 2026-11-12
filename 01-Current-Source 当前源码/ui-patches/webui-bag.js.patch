@@ -1,0 +1,81 @@
+--- a/webui-bag.js
++++ b/webui-bag.js
+@@ -200,6 +200,34 @@
+         function initGrid() {
+             var container = document.getElementById(containerId);
+             if (!container) return;
++            // View-only viewport: keep the original grid and item coordinates intact.
++            if (cfg.cols > 12 || cfg.rows > 10 || container.parentElement.classList.contains('trainer-grid-scroll')) {
++                var viewport = container.parentElement;
++                if (!viewport.classList.contains('trainer-grid-scroll')) {
++                    if (!document.getElementById('trainer-grid-scroll-style')) {
++                        var style = document.createElement('style');
++                        style.id = 'trainer-grid-scroll-style';
++                        style.textContent = '.trainer-grid-scroll::-webkit-scrollbar{display:block!important;width:12px!important;height:12px!important;background:#172429}.trainer-grid-scroll::-webkit-scrollbar-thumb{background:#799d92;border:2px solid #172429;border-radius:6px}.trainer-grid-scroll::-webkit-scrollbar-corner{background:#172429}';
++                        document.head.appendChild(style);
++                    }
++                    viewport = document.createElement('div');
++                    viewport.className = 'trainer-grid-scroll';
++                    viewport.title = '滚轮上下查看；Shift + 滚轮左右查看，也可拖动滚动条';
++                    viewport.style.cssText = 'overflow:auto;max-width:min(38vw,calc((100vw - 420px)/2));max-height:48vh;min-width:0;min-height:0;flex:0 1 auto;position:relative;overscroll-behavior:contain;';
++                    container.parentElement.insertBefore(viewport, container);
++                    viewport.appendChild(container);
++                    viewport.addEventListener('wheel', function(e) {
++                        if (e.shiftKey && viewport.scrollWidth > viewport.clientWidth) {
++                            viewport.scrollLeft += e.deltaY || e.deltaX;
++                            e.preventDefault();
++                        }
++                        e.stopPropagation();
++                    }, { passive:false });
++                }
++                container.style.width = 'max-content';
++                container.style.maxWidth = 'none';
++                container.style.flexShrink = '0';
++            }
+             container.innerHTML = '';
+             container.style.gridTemplateColumns = 'repeat(' + cfg.cols + ', ' + cfg.slotSize + 'px)';
+             container.style.gridTemplateRows = 'repeat(' + cfg.rows + ', ' + cfg.slotSize + 'px)';
+@@ -381,6 +409,8 @@
+ 
+         function getGridCoordinates(clientX, clientY, itemW, itemH, cachedRect, zoomOpt) {
+             var rect = cachedRect;
++            var grid = _cachedContainer || document.getElementById(containerId);
++            if (grid && grid.parentElement.classList.contains('trainer-grid-scroll')) rect = null;
+             if (!rect) {
+                 var container = _cachedContainer || document.getElementById(containerId);
+                 if (!container) return { row: 0, col: 0 };
+@@ -400,6 +430,8 @@
+         /* 光标所在的格子（交换 / 合并对象按它找）；与按物品中心算落点的 getGridCoordinates 不同 */
+         function getCursorCell(clientX, clientY, cachedRect, zoomOpt) {
+             var rect = cachedRect;
++            var grid = _cachedContainer || document.getElementById(containerId);
++            if (grid && grid.parentElement.classList.contains('trainer-grid-scroll')) rect = null;
+             if (!rect) {
+                 var container = _cachedContainer || document.getElementById(containerId);
+                 if (!container) return { row: -1, col: -1 };
+@@ -440,6 +472,13 @@
+ 
+         function isMouseOver(clientX, clientY, cachedRect) {
+             var rect = cachedRect;
++            var grid = _cachedContainer || document.getElementById(containerId);
++            if (grid && grid.parentElement.classList.contains('trainer-grid-scroll')) {
++                var clip = grid.parentElement.getBoundingClientRect();
++                if (clientX < clip.left || clientX >= clip.left + grid.parentElement.clientWidth * getBodyZoom() ||
++                    clientY < clip.top || clientY >= clip.top + grid.parentElement.clientHeight * getBodyZoom()) return false;
++                rect = null;
++            }
+             if (!rect) {
+                 var container = _cachedContainer || document.getElementById(containerId);
+                 if (!container) return false;
+@@ -1238,6 +1277,11 @@
+                 el.style.marginRight = '0px';
+                 el.style.marginTop = '0px';
+                 el.style.marginBottom = '0px';
++                if (el.parentElement.classList.contains('trainer-grid-scroll')) {
++                    lockedW = el.parentElement.offsetWidth;
++                    lockedH = el.parentElement.offsetHeight;
++                    return;
++                }
+                 var baseW = el.offsetWidth, baseH = el.offsetHeight;
+ 
+                 var diffX = Math.round(Math.max(0, seenCols - cols) * step(el, 'x'));

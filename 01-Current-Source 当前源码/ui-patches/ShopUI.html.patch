@@ -1,0 +1,105 @@
+--- a/ShopUI.html
++++ b/ShopUI.html
+@@ -2,7 +2,7 @@
+ <html lang="zh-CN">
+ <head>
+     <meta charset="UTF-8">
+-    <title>商店</title>
++    <title>商店</title><script src="trainer-buy100.js"></script>
+     <script src="../../vue.runtime.global.prod.js"></script>
+ <script>
+ /* === [precompiled v1] === */
+@@ -463,6 +463,10 @@
+                           (item.remain > 0)
+                             ? (_openBlock(), _createElementBlock("span", _hoisted_50, "$" + _toDisplayString(item.price), 1 /* TEXT */))
+                             : _createCommentVNode("v-if", true),
++                          _createElementVNode("button", {
++                            class: "buy-btn", style: { display: window.trainerBuy100Enabled ? "" : "none" }, disabled: !!_ctx.batchPurchase || item.remain <= 0 || item.demoLocked,
++                            onClick: _withModifiers($event => (_ctx.onBuy100(item)), ["stop"])
++                          }, _toDisplayString(_ctx.batchPurchase ? '选购中…' : '买100个'), 9, ["disabled", "onClick"]),
+                           (item.remain > 0)
+                             ? (_openBlock(), _createElementBlock("button", {
+                                 key: 1,
+@@ -1563,6 +1567,7 @@
+                                         <button v-else class="buy-btn sold-out" @click.stop>
+                                             {{ localText.soldOutText }}
+                                         </button>
++                                        <button v-show="buy100Enabled" class="buy-btn" :disabled="!!batchPurchase || item.remain <= 0 || item.demoLocked" @click.stop="onBuy100(item)">{{ batchPurchase ? '选购中…' : '买100个' }}</button>
+                                     </template>
+                                 </div>
+                             </div>
+@@ -1857,6 +1862,7 @@
+                 };
+ 
+                 const onSwitchTab = (tab) => {
++                    stopBatchPurchase();
+                     if (tab === curTab.value) return;
+                     if (tab === 1 && !bag.hasTrunkTab) return;
+                     if (tab === 1) guideDismissed.value = true;
+@@ -2382,15 +2388,55 @@
+                     });
+                 };
+ 
++                // Buy through the original cart flow, one acknowledged item at a time.
++                const batchPurchase = ref(null);
++                let batchTimer = null;
++                const stopBatchPurchase = () => {
++                    if (batchTimer !== null) clearTimeout(batchTimer);
++                    batchTimer = null;
++                    batchPurchase.value = null;
++                };
++                const buyBatchNext = () => {
++                    const job = batchPurchase.value;
++                    if (!job) return;
++                    const current = shopItems.value.find(x => x.itemConfigId === job.id);
++                    if (job.left <= 0 || !current || current.demoLocked || current.remain <= 0) {
++                        stopBatchPurchase(); return;
++                    }
++                    const before = cart.cartItemCount;
++                    core.UnitySendEvent('BUY_SHOP_ITEM', { itemConfigId: job.id });
++                    let waited = 0;
++                    const check = () => {
++                        if (batchPurchase.value !== job) return;
++                        if (cart.cartItemCount > before) {
++                            job.left--;
++                            batchTimer = setTimeout(buyBatchNext, 60);
++                        } else if ((waited += 50) >= 2000) {
++                            stopBatchPurchase();
++                        } else { batchTimer = setTimeout(check, 50); }
++                    };
++                    batchTimer = setTimeout(check, 50);
++                };
++                const onBuy100 = (item) => {
++                    if (!window.trainerBuy100Enabled || batchPurchase.value || item.demoLocked || item.remain <= 0) return;
++                    batchPurchase.value = { id: item.itemConfigId, left: 100 };
++                    buyBatchNext();
++                };
++                window.addEventListener('pagehide', stopBatchPurchase);
++                document.addEventListener('visibilitychange', () => {
++                    if (document.hidden) stopBatchPurchase();
++                });
+                 const onBuyShopItem = (item) => {
++                    if (batchPurchase.value) return;
++
+                     if (item.remain <= 0) return;
+                     core.UnitySendEvent('BUY_SHOP_ITEM', {
+                         itemConfigId: item.itemConfigId
+                     });
+                 };
+ 
+-                const onCheckout = () => { core.UnitySendEvent('CHECKOUT'); };
+-                const onClose = () => { core.UnitySendEvent('ACTION_CLOSE'); };
++                const onCheckout = () => { stopBatchPurchase(); core.UnitySendEvent('CHECKOUT'); };
++                const onClose = () => { stopBatchPurchase(); core.UnitySendEvent('ACTION_CLOSE'); };
+ 
+                 onMounted(() => {
+                     core.clickThrough.start();
+@@ -2414,7 +2460,7 @@
+                     weightPercent, weightColor, fmtWeightUp, fmtWeightDown,
+                     gridContainerStyle, gridBgStyle, getItemStyle, getQualityClass, getUseBarStyle,
+                     formatRemain, cartCountText, formatSizeTip,
+-                    onClickShopItem, onBuyShopItem, onCheckout, onClose,
++                    onClickShopItem, onBuyShopItem, onBuy100, batchPurchase, buy100Enabled: !!window.trainerBuy100Enabled, onCheckout, onClose,
+                     gridRef, dragState, smartPushIds, smartMovedIds,
+                     onMouseDown, highlightStyle,
+                     onItemEnter, onItemMove, onItemLeave, setTooltipEl,

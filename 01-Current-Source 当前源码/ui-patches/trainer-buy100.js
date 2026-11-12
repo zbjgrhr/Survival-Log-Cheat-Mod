@@ -1,0 +1,1 @@
+window.trainerBuy100Enabled = false;
